@@ -6,7 +6,7 @@ package fr.lenny.metier;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import fr.lenny.impl.IManipStagiaire;
+import fr.lenny.metier.impl.IManipStagiaire;
 
 /**
  * @author ajc

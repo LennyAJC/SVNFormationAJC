@@ -9,10 +9,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import fr.lenny.impl.IManipStagiaire;
-import fr.lenny.impl.IManipStagiaireFactory;
 import fr.lenny.metier.Formation;
 import fr.lenny.metier.Stagiaire;
+import fr.lenny.metier.impl.IManipStagiaire;
+import fr.lenny.metier.impl.IManipStagiaireFactory;
 import fr.lenny.utils.Utils;
 
 /**

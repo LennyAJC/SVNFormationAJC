@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.lenny.impl;
+package fr.lenny.metier.impl;
 
 import fr.lenny.metier.ManipStagiaire;
 
