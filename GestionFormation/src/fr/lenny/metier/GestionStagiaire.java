@@ -6,7 +6,7 @@ package fr.lenny.metier;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import fr.lenny.metier.impl.IManipStagiaire;
+import fr.lenny.metier.impl.IGestionStagiaire;
 import fr.lenny.metier.impl.IStagiaire;
 
 /**
@@ -15,7 +15,7 @@ import fr.lenny.metier.impl.IStagiaire;
  * @author ajc
  *
  */
-public class ManipStagiaire implements IManipStagiaire {
+public class GestionStagiaire implements IGestionStagiaire {
 
 	protected ArrayList<Stagiaire> lstStagiaire;
 
@@ -29,9 +29,9 @@ public class ManipStagiaire implements IManipStagiaire {
 	// }
 
 	/**
-	 * Constructor de la Classe ManipStagiaire
+	 * Constructor de la Classe GestionStagiaire
 	 */
-	public ManipStagiaire() {
+	public GestionStagiaire() {
 		super();
 		lstStagiaire = new ArrayList<Stagiaire>();
 	}

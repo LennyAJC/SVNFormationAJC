@@ -11,7 +11,7 @@ import fr.lenny.metier.Stagiaire;
  * @author ajc
  *
  */
-public interface IManipStagiaire {
+public interface IGestionStagiaire {
 
 	/**
 	 * Method qui retourne une liste de Stagiaire
