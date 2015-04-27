@@ -3,7 +3,9 @@
  */
 package fr.lenny.impl;
 
-import fr.lenny.metier.ManipStagiaire;
+import java.util.ArrayList;
+
+import fr.lenny.metier.Stagiaire;
 
 
 
@@ -14,16 +16,19 @@ import fr.lenny.metier.ManipStagiaire;
 public interface IManipStagiaire {
 
 	/**
+	 * 
+	 * @param lstStagiaire
 	 * @return
 	 */
-	ManipStagiaire makeInstance();
+	public ArrayList<Stagiaire> getStagiaire();
+	public void afficherlst() ;
 
-	//protected ArrayList<Stagiaire> lstStagiaire;
-	//private static ManipStagiaire instance;
+	/**
+	 * Methode permettant d'ajouter un stagiaire
+	 */
+	public void ajouterStagiaire(Stagiaire stag);
 
-	//public ManipStagiaire getInstance();
-
-	//public  ManipStagiaire makeInstance();
-
+	public void trier();
+	public int moyenneAge();
 	
 }

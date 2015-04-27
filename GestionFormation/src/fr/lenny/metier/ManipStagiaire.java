@@ -15,17 +15,17 @@ import fr.lenny.impl.IManipStagiaire;
 public class ManipStagiaire implements IManipStagiaire {
 
 	protected ArrayList<Stagiaire> lstStagiaire;
-	static private ManipStagiaire instance = null;
+	// static private ManipStagiaire instance = null;
 
-	//private static MyInterface instance = new MySingleton();
+	// private static MyInterface instance = new MySingleton();
 	
-	public ManipStagiaire getInstance() {
-		if (null == instance) {
-			instance = new ManipStagiaire();
-		}
-		return instance;
-	}
-	
+//	public ManipStagiaire getInstance() {
+//		if (null == instance) {
+//			instance = new ManipStagiaire();
+//		}
+//		return instance;
+//	}
+//	
 
 
 	public ManipStagiaire() {
@@ -89,15 +89,5 @@ public class ManipStagiaire implements IManipStagiaire {
 		return moyenne;
 	}
 
-
-
-	/* (non-Javadoc)
-	 * @see fr.lenny.impl.IManipStagiaire#makeInstance()
-	 */
-	@Override
-	public ManipStagiaire makeInstance() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

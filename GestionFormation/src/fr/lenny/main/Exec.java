@@ -9,7 +9,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import fr.lenny.impl.IManipStagiaireWrapper;
+import fr.lenny.impl.IManipStagiaire;
+import fr.lenny.impl.IManipStagiaireFactory;
 import fr.lenny.metier.Formation;
 import fr.lenny.metier.Stagiaire;
 import fr.lenny.utils.Utils;
@@ -42,6 +43,9 @@ public class Exec {
 
 		Utils.sc = new Scanner(System.in);
 
+		IManipStagiaireFactory mstagf = IManipStagiaireFactory.getFactory();
+		IManipStagiaire mstag = mstagf.getInstance();
+		
 		nomFormation = Utils.lireString("Saisissez une formation");
 		dateFormation = Utils
 				.lireString("A quelle date aura lieu cette formation ?");
@@ -62,24 +66,24 @@ public class Exec {
 			age = Utils.lireInt("Saisissez l'age du stagiaire n°" + i);
 
 			stag = new Stagiaire(nom, prenom, age);
-			IManipStagiaireWrapper.instance().ajouterStagiaire(stag);
+			mstag.ajouterStagiaire(stag);
 		}
 
+		
 		Utils.afficher("\n");
 		Utils.afficher("Affichage de la liste des stagiaires saisis : ");
-		IManipStagiaireWrapper.instance().afficherlst();
+		mstag.afficherlst();
 
 		Utils.afficher("\n");
 		Utils.afficher("Affichage de la liste des stagiaires triés : ");
-		IManipStagiaireWrapper.instance().trier();
-		IManipStagiaireWrapper.instance().afficherlst();
+		mstag.trier();
+		mstag.afficherlst();
 		Utils.afficher("\n");
 		Utils.afficher("Affichage de la moyenne d'age des stagiaires saisis : ");
-		System.out.println(IManipStagiaireWrapper.instance().moyenneAge());
+		System.out.println(mstag.moyenneAge());
 
 		// recuperation de la liste des stagiaires
-		ArrayList<Stagiaire> lstStagiaire = IManipStagiaireWrapper.instance()
-				.getStagiaire();
+		ArrayList<Stagiaire> lstStagiaire = mstag.getStagiaire();
 
 		// Creation de la formation avec ajout des stagiaires
 		Formation form = new Formation(nomFormation, dateFormation, nbSta,
