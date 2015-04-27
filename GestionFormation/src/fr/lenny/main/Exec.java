@@ -9,8 +9,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import fr.lenny.impl.IManipStagiaireWrapper;
 import fr.lenny.metier.Formation;
-import fr.lenny.metier.ManipStagiaire;
 import fr.lenny.metier.Stagiaire;
 import fr.lenny.utils.Utils;
 
@@ -62,23 +62,23 @@ public class Exec {
 			age = Utils.lireInt("Saisissez l'age du stagiaire n°" + i);
 
 			stag = new Stagiaire(nom, prenom, age);
-			ManipStagiaire.getInstance().ajouterStagiaire(stag);
+			IManipStagiaireWrapper.instance().ajouterStagiaire(stag);
 		}
 
 		Utils.afficher("\n");
 		Utils.afficher("Affichage de la liste des stagiaires saisis : ");
-		ManipStagiaire.getInstance().afficherlst();
+		IManipStagiaireWrapper.instance().afficherlst();
 
 		Utils.afficher("\n");
 		Utils.afficher("Affichage de la liste des stagiaires triés : ");
-		ManipStagiaire.getInstance().trier();
-		ManipStagiaire.getInstance().afficherlst();
+		IManipStagiaireWrapper.instance().trier();
+		IManipStagiaireWrapper.instance().afficherlst();
 		Utils.afficher("\n");
 		Utils.afficher("Affichage de la moyenne d'age des stagiaires saisis : ");
-		System.out.println(ManipStagiaire.getInstance().moyenneAge());
+		System.out.println(IManipStagiaireWrapper.instance().moyenneAge());
 
 		// recuperation de la liste des stagiaires
-		ArrayList<Stagiaire> lstStagiaire = ManipStagiaire.getInstance()
+		ArrayList<Stagiaire> lstStagiaire = IManipStagiaireWrapper.instance()
 				.getStagiaire();
 
 		// Creation de la formation avec ajout des stagiaires
@@ -108,15 +108,15 @@ public class Exec {
 
 		catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Le fichier est introuvable");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Impossible d'écrire dans le flux");
 		} finally {
 			try {
 				fichier.close();
 			} catch (IOException ex) {
-				ex.printStackTrace();
+				System.out.println("Impossible de fermer le flux");
 			}
 
 		}

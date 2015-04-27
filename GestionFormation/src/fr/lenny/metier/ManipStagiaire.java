@@ -6,26 +6,33 @@ package fr.lenny.metier;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import fr.lenny.impl.IManipStagiaire;
+
 /**
  * @author ajc
  *
  */
-public class ManipStagiaire {
+public class ManipStagiaire implements IManipStagiaire {
 
 	protected ArrayList<Stagiaire> lstStagiaire;
-	private static ManipStagiaire instance;
+	static private ManipStagiaire instance = null;
 
-	public static ManipStagiaire getInstance() {
+	//private static MyInterface instance = new MySingleton();
+	
+	public ManipStagiaire getInstance() {
 		if (null == instance) {
 			instance = new ManipStagiaire();
 		}
 		return instance;
 	}
+	
 
-	private ManipStagiaire() {
+
+	public ManipStagiaire() {
 		super();
 		lstStagiaire = new ArrayList<Stagiaire>();
 	}
+
 
 	/**
 	 * 
@@ -80,6 +87,17 @@ public class ManipStagiaire {
 		}
 		moyenne = agetot / compteur;
 		return moyenne;
+	}
+
+
+
+	/* (non-Javadoc)
+	 * @see fr.lenny.impl.IManipStagiaire#makeInstance()
+	 */
+	@Override
+	public ManipStagiaire makeInstance() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
