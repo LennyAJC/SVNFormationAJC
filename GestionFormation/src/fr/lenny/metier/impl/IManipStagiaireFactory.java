@@ -11,7 +11,7 @@ import fr.lenny.metier.ManipStagiaire;
  */
 final public class IManipStagiaireFactory {
 
-	 
+	static private IManipStagiaireFactory instance = null;
 
 	   /**
 	    * This is the default factory method.
@@ -19,7 +19,10 @@ final public class IManipStagiaireFactory {
 	    * a new instance is needed and _factory is null.
 	    */
 	   public static IManipStagiaireFactory getFactory() {
-	      return new IManipStagiaireFactory();
+		   if (null == instance) {
+			   instance = new IManipStagiaireFactory();
+		   }
+			return instance;
 	   }
 
 	   /**

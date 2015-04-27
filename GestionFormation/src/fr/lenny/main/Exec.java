@@ -6,8 +6,24 @@ package fr.lenny.main;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Text;
 
 import fr.lenny.metier.Formation;
 import fr.lenny.metier.Stagiaire;
@@ -53,7 +69,7 @@ public class Exec {
 		nbSta = Utils.lireInt("Combien de Stagiaire suivent cette formation?");
 		Utils.afficher("\n");
 
-		for (int i = 0; i < nbSta; i++) {
+		for (int i = 1; i < nbSta+1; i++) {
 
 			String nom;
 			String prenom;
@@ -61,8 +77,7 @@ public class Exec {
 
 			// Utils.afficher();
 			nom = Utils.lireString("Saisissez le nom du stagiaire n°" + i);
-			prenom = Utils
-					.lireString("Saisissez le prenom du stagiaire n°" + i);
+			prenom = Utils.lireString("Saisissez le prenom du stagiaire n°" + i);
 			age = Utils.lireInt("Saisissez l'age du stagiaire n°" + i);
 
 			stag = new Stagiaire(nom, prenom, age);
@@ -89,40 +104,94 @@ public class Exec {
 		Formation form = new Formation(nomFormation, dateFormation, nbSta,
 				lstStagiaire);
 		FileWriter fichier = null;
+		
+		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		try {
+			
+			DocumentBuilder db = dbf.newDocumentBuilder();
+		      Document doc = db.newDocument();
+		      
+		      Element noeud0 = doc.createElement("Formation");
+		      doc.appendChild(noeud0);
+		      Element noeud1 = doc.createElement("NomFormation");
+		      Text text1 = doc.createTextNode(form.getNomFormation());
+		      noeud1.appendChild(text1);
+		      noeud0.appendChild(noeud1);
+		      Element noeud2 = doc.createElement("Date");
+		      Text text2 = doc.createTextNode(form.getDateFormation());
+		      noeud2.appendChild(text2);
+		      noeud0.appendChild(noeud2);
+		      
+		      Element noeud3 = doc.createElement("ListeStagiaires");
+		      //noeud3.appendChild(text3);
+		      noeud0.appendChild(noeud3);
 
-			fichier = new FileWriter("file.txt");
-
-			fichier.write("La formation : " + form.getNomFormation()
-					+ "aura lieu le : " + form.getNbSta());
-			fichier.write("\n");
-			fichier.write("\n");
-			fichier.write("Liste des Stagiaires : ");
-			fichier.write("\n");
-
-			for (Stagiaire Stagiaire : lstStagiaire) {
-				fichier.write(" Nom : " + Stagiaire.getNom());
-				fichier.write(" Prenom :" + Stagiaire.getPrenom());
-				fichier.write(" Age : " + Stagiaire.getAge());
-				fichier.write("\n");
-
-			}
-			fichier.close();
-		}
-
-		catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Le fichier est introuvable");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Impossible d'écrire dans le flux");
-		} finally {
-			try {
-				fichier.close();
-			} catch (IOException ex) {
-				System.out.println("Impossible de fermer le flux");
-			}
-
-		}
+		      
+		      TransformerFactory tf = TransformerFactory.newInstance();
+		      Transformer transformer = tf.newTransformer();
+		      transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+		      StringWriter sw = new StringWriter();
+		      StreamResult sr = new StreamResult(sw);
+		      DOMSource source = new DOMSource(doc);
+		      transformer.transform(source, sr);
+		      String xmlString = sw.toString();
+		      System.out.println(xmlString);
+		    }catch(ParserConfigurationException pce) {
+		      pce.printStackTrace();
+		    } catch (TransformerConfigurationException e) {
+		      e.printStackTrace();
+		    } catch (TransformerException e) {
+		      e.printStackTrace();
+		    }
 	}
+//		      
+//		      
+//			fichier = new FileWriter("file.xml");
+//			fichier.write("<Formation>");
+//			fichier.write("<NomFormation>" + form.getNomFormation() +"</NomFormation>");
+//					fichier.write( "<date>" + form.getDateFormation() + "</date>");
+//			fichier.write("<ListeStagiaires>");
+//			int compteur =0;
+//			for (Stagiaire Stagiaire : lstStagiaire) {
+//				compteur++;
+//				fichier.write("<Stagiaire numero=" + compteur + ">");
+//				fichier.write("<Nom>" + Stagiaire.getNom() + "</Nom>");
+//				fichier.write("<Prenom>" + Stagiaire.getPrenom() + "</Prenom>");
+//				fichier.write("<Age>" + Stagiaire.getAge() + "</Age>");
+//				fichier.write("</Stagiaire>");
+//
+//			}
+//			fichier.write("</ListeStagiaires>");
+//			fichier.write("</Formation>");
+//			fichier.close();
+//		}
+//
+//		catch (FileNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			System.out.println("Le fichier est introuvable");
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			System.out.println("Impossible d'écrire dans le flux");
+//		} catch (ParserConfigurationException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} finally {
+//			try {
+//				fichier.close();
+//			} catch (IOException ex) {
+//				System.out.println("Impossible de fermer le flux");
+//			}
+//
+//		}
+//	}
+	
+	 public static Document createDomDocument() {
+	        try {
+	            DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+	            Document doc = builder.newDocument();
+	            return doc;
+	        } catch (ParserConfigurationException e) {
+	        }
+	        return null;
+	    }
 }
