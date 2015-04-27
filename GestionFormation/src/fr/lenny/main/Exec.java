@@ -160,19 +160,6 @@ public class Exec {
 				compteur++;
 
 			}
-			// fichier.write("</ListeStagiaires>");
-			// fichier.write("</Formation>");
-			// fichier.close();
-
-			// TransformerFactory tf = TransformerFactory.newInstance();
-			// Transformer transformer = tf.newTransformer();
-			// transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-			// StringWriter sw = new StringWriter();
-			// StreamResult sr = new StreamResult(sw);
-			// DOMSource source = new DOMSource(doc);
-			// transformer.transform(source, sr);
-			// String xmlString = sw.toString();
-			// System.out.println(xmlString);
 
 			TransformerFactory tf = TransformerFactory.newInstance();
 			Transformer transformer = tf.newTransformer();
@@ -191,56 +178,4 @@ public class Exec {
 		}
 	}
 
-	//
-	//
-	// fichier = new FileWriter("file.xml");
-	// fichier.write("<Formation>");
-	// fichier.write("<NomFormation>" + ifor.getNomFormation()
-	// +"</NomFormation>");
-	// fichier.write( "<date>" + ifor.getDateFormation() + "</date>");
-	// fichier.write("<ListeStagiaires>");
-	// int compteur =0;
-	// for (Stagiaire Stagiaire : lstStagiaire) {
-	// compteur++;
-	// fichier.write("<Stagiaire numero=" + compteur + ">");
-	// fichier.write("<Nom>" + istag.getNom() + "</Nom>");
-	// fichier.write("<Prenom>" + istag.getPrenom() + "</Prenom>");
-	// fichier.write("<Age>" + istag.getAge() + "</Age>");
-	// fichier.write("</Stagiaire>");
-	//
-	// }
-	// fichier.write("</ListeStagiaires>");
-	// fichier.write("</Formation>");
-	// fichier.close();
-	// }
-	//
-	// catch (FileNotFoundException e) {
-	// // TODO Auto-generated catch block
-	// System.out.println("Le fichier est introuvable");
-	// } catch (IOException e) {
-	// // TODO Auto-generated catch block
-	// System.out.println("Impossible d'écrire dans le flux");
-	// } catch (ParserConfigurationException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// } finally {
-	// try {
-	// fichier.close();
-	// } catch (IOException ex) {
-	// System.out.println("Impossible de fermer le flux");
-	// }
-	//
-	// }
-	// }
-
-	public static Document createDomDocument() {
-		try {
-			DocumentBuilder builder = DocumentBuilderFactory.newInstance()
-					.newDocumentBuilder();
-			Document doc = builder.newDocument();
-			return doc;
-		} catch (ParserConfigurationException e) {
-		}
-		return null;
-	}
 }

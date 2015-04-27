@@ -14,17 +14,17 @@ import fr.lenny.metier.Stagiaire;
  */
 public class FormationFactory {
 
-	static private FormationFactory instance = null;
+	static private FormationFactory factory = null;
 
 	/**
 	 * This is the default factory method. It is called to create a new
-	 * Singleton when a new instance is needed and _factory is null.
+	 * Singleton when a new instance is needed and factory is null.
 	 */
 	public static FormationFactory getFactory() {
-		if (null == instance) {
-			instance = new FormationFactory();
+		if (null == factory) {
+			factory = new FormationFactory();
 		}
-		return instance;
+		return factory;
 	}
 
 	/**

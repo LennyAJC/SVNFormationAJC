@@ -3,8 +3,9 @@
  */
 package fr.lenny.metier.impl;
 
-import java.text.SimpleDateFormat;
 import java.util.Scanner;
+
+import org.w3c.dom.Document;
 
 /**
  * @author Behelit
@@ -12,20 +13,12 @@ import java.util.Scanner;
  */
 public interface IUtils {
 
-	//public void afficher(int reponse);
+	// public void afficher(int reponse);
 
 	Scanner sc = new Scanner(System.in);
 
 	/**
-	 * Affiche l'information passée en paramètre.
-	 * 
-	 * @param reponse
-	 *            : l'information passée en paramètre
-	 */
-	public void afficher(double reponse);
-
-	/**
-	 * Affiche l'information passée en paramètre.
+	 * Affiche sur la console
 	 * 
 	 * @param reponse
 	 *            : l'information passée en paramètre
@@ -33,16 +26,30 @@ public interface IUtils {
 	public void afficher(String reponse);
 
 	/**
-	 * @param taille
-	 * @return
+	 * Affiche sur la console
+	 * 
+	 * @param reponse
+	 *            : l'information passée en paramètre
 	 */
 	public String lireString(String str);
 
 	/**
-	 * @param taille
-	 * @return
+	 * Affiche sur la console et renvoi une chaine saisi par l'utilisateur
+	 * 
+	 * @param str
+	 *            : l'information passée en paramètre
+	 * @return lu : chaine saisie par l'utilisateur
 	 */
 	public int lireInt(String str);
 
-	public SimpleDateFormat lireDate();
+	// public SimpleDateFormat lireDate();
+
+	/**
+	 * Affiche sur la console et renvoi un entier saisi par l'utilisateur
+	 * 
+	 * @param str
+	 *            : l'information passée en paramètre
+	 * @return lu : entier saisi par l'utilisateur
+	 */
+	public Document createDomDocument();
 }

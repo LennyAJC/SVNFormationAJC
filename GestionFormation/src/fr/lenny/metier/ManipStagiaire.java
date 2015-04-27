@@ -10,6 +10,8 @@ import fr.lenny.metier.impl.IManipStagiaire;
 import fr.lenny.metier.impl.IStagiaire;
 
 /**
+ * Classe permettant de manipuler les listes de stagiaires
+ * 
  * @author ajc
  *
  */
@@ -26,15 +28,18 @@ public class ManipStagiaire implements IManipStagiaire {
 	// return instance;
 	// }
 
+	/**
+	 * Constructor de la Classe ManipStagiaire
+	 */
 	public ManipStagiaire() {
 		super();
 		lstStagiaire = new ArrayList<Stagiaire>();
 	}
 
 	/**
+	 * Method qui retourne une liste de Stagiaire
 	 * 
-	 * @param lstStagiaire
-	 * @return
+	 * @return lstStagiaire : une liste de stagiaires
 	 */
 	public ArrayList<Stagiaire> getStagiaire() {
 		return lstStagiaire;
@@ -42,7 +47,7 @@ public class ManipStagiaire implements IManipStagiaire {
 	}
 
 	/**
-	 * 
+	 * Method qui permet d'afficher la liste des stagiaires (nom, prenom, age)
 	 */
 	public void afficherlst() {
 		for (Stagiaire Stagiaire : getStagiaire()) {
@@ -61,17 +66,26 @@ public class ManipStagiaire implements IManipStagiaire {
 	}
 
 	/**
-	 * Methode permettant d'ajouter un stagiaire
+	 * Method permettant d'ajouter un stagiaire à la liste des stagiaires
 	 */
-	public void ajouterStagiaire(Stagiaire stag) {
+//	public void ajouterStagiaire(Stagiaire stag) {
+//
+//		getStagiaire().add(stag);
+//	}
 
-		getStagiaire().add(stag);
-	}
-
+	/**
+	 * Method permettant de trier la liste des stagiaires (ordre croissant de
+	 * l'age) cf. compareTo de Stagiaire
+	 */
 	public void trier() {
 		Collections.sort(getStagiaire());
 	}
 
+	/**
+	 * Method permettant de faire la moyenne des ages des stagiaires
+	 * 
+	 * @return moyenne : la moyenne des ages des stagiaires
+	 */
 	public int moyenneAge() {
 		int agetot = 0;
 		int compteur = 0;
@@ -86,9 +100,10 @@ public class ManipStagiaire implements IManipStagiaire {
 		return moyenne;
 	}
 
-	@Override
+	/**
+	 * Method permettant d'ajouter un stagiaire à la liste des stagiaires
+	 */
 	public void ajouterStagiaire(IStagiaire istag) {
-		// TODO Auto-generated method stub
 		getStagiaire().add((Stagiaire) istag);
 	}
 
