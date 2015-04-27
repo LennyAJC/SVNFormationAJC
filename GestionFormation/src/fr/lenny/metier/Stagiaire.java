@@ -3,12 +3,14 @@
  */
 package fr.lenny.metier;
 
+import fr.lenny.metier.impl.IStagiaire;
+
 
 /**
  * @author ajc
  *
  */
-public class Stagiaire implements Comparable<Stagiaire>{
+public class Stagiaire implements Comparable<Stagiaire>, IStagiaire{
 	String nom;
 	String prenom;
 	int age;

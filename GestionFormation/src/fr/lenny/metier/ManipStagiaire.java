@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import fr.lenny.metier.impl.IManipStagiaire;
+import fr.lenny.metier.impl.IStagiaire;
 
 /**
  * @author ajc
@@ -15,24 +16,20 @@ import fr.lenny.metier.impl.IManipStagiaire;
 public class ManipStagiaire implements IManipStagiaire {
 
 	protected ArrayList<Stagiaire> lstStagiaire;
+
 	// static private ManipStagiaire instance = null;
 
-	// private static MyInterface instance = new MySingleton();
-	
-//	public ManipStagiaire getInstance() {
-//		if (null == instance) {
-//			instance = new ManipStagiaire();
-//		}
-//		return instance;
-//	}
-//	
-
+	// public ManipStagiaire getInstance() {
+	// if (null == instance) {
+	// instance = new ManipStagiaire();
+	// }
+	// return instance;
+	// }
 
 	public ManipStagiaire() {
 		super();
 		lstStagiaire = new ArrayList<Stagiaire>();
 	}
-
 
 	/**
 	 * 
@@ -78,7 +75,7 @@ public class ManipStagiaire implements IManipStagiaire {
 	public int moyenneAge() {
 		int agetot = 0;
 		int compteur = 0;
-		
+
 		int moyenne;
 
 		for (Stagiaire stagiaire : lstStagiaire) {
@@ -89,5 +86,10 @@ public class ManipStagiaire implements IManipStagiaire {
 		return moyenne;
 	}
 
+	@Override
+	public void ajouterStagiaire(IStagiaire istag) {
+		// TODO Auto-generated method stub
+		getStagiaire().add((Stagiaire) istag);
+	}
 
 }

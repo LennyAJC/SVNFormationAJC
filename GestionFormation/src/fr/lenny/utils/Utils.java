@@ -12,13 +12,19 @@ import java.util.Date;
  */
 import java.util.Scanner;
 
+import fr.lenny.metier.impl.IUtils;
+
 /**
  * @author ajc
  *
  */
-public class Utils {
+public class Utils implements IUtils {
 
-	public static Scanner sc;
+	public Scanner sc = new Scanner(System.in);
+
+	public Utils() {
+
+	}
 
 	/**
 	 * Affiche l'information passée en paramètre.
@@ -26,68 +32,65 @@ public class Utils {
 	 * @param reponse
 	 *            : l'information passée en paramètre
 	 */
-	public static void afficher(int reponse) {
+	public void afficher(int reponse) {
 		System.out.println(reponse);
 	}
+
 	/**
 	 * Affiche l'information passée en paramètre.
 	 * 
 	 * @param reponse
 	 *            : l'information passée en paramètre
 	 */
-	public static void afficher(double reponse) {
+	public void afficher(double reponse) {
 		System.out.println(reponse);
 	}
+
 	/**
 	 * Affiche l'information passée en paramètre.
 	 * 
 	 * @param reponse
 	 *            : l'information passée en paramètre
 	 */
-	public static void afficher(String reponse) {
+	public void afficher(String reponse) {
 		System.out.println(reponse);
 	}
-	
+
 	/**
 	 * @param taille
-	 * @return 
+	 * @return
 	 */
-	public static String lireString(String str) {
-		Utils.afficher(str);
+	public String lireString(String str) {
+		afficher(str);
 		String lu = sc.next();
 		return lu;
-		
+
 	}
 
 	/**
 	 * @param taille
-	 * @return 
+	 * @return
 	 */
-	public static int lireInt(String str) {
-		Utils.afficher(str);
+	public int lireInt(String str) {
+		afficher(str);
 		int lu = sc.nextInt();
 		return lu;
-		
+
 	}
-	
-	public static SimpleDateFormat lireDate() {
+
+	public SimpleDateFormat lireDate() {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		String dateStr = sc.next();
 		try {
-	         Date date = sdf.parse(dateStr); 
-	 
-	         sdf = new SimpleDateFormat("EEE, d MMM yyyy");
-	         sdf.format(date);
-	      } catch (ParseException e) { 
-	         System.out.println("Parse Exception");
-	      }
+			Date date = sdf.parse(dateStr);
+
+			sdf = new SimpleDateFormat("EEE, d MMM yyyy");
+			sdf.format(date);
+		} catch (ParseException e) {
+			System.out.println("Parse Exception");
+		}
 		return sdf;
-		
+
 	}
-	
-	
-	/**
-	 * 
-	 */
 
 }
