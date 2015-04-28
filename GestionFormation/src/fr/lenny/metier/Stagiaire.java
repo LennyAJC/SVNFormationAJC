@@ -3,31 +3,31 @@
  */
 package fr.lenny.metier;
 
+import fr.lenny.metier.impl.IStagiaire;
 
 /**
  * @author ajc
  *
  */
-public class Stagiaire implements Comparable<Stagiaire>{
+public class Stagiaire implements Comparable<Stagiaire>, IStagiaire {
 	String nom;
 	String prenom;
 	int age;
 
-
-/**
- * Constructor de Stagiaire
- * @param nom
- * @param prenom
- * @param age
- */
+	/**
+	 * Constructor de Stagiaire
+	 * 
+	 * @param nom
+	 * @param prenom
+	 * @param age
+	 */
 	public Stagiaire(String nom, String prenom, int age) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.age = age;
 	}
-	
-	
+
 	// Getterz & Setterz
 	/**
 	 * @return the nom
@@ -74,8 +74,9 @@ public class Stagiaire implements Comparable<Stagiaire>{
 		this.age = age;
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 */
 	@Override
