@@ -108,13 +108,13 @@ public class ContactDao {
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("La requete est incorrecte");
 		}
 		try {
 			connection.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Impossible de fermer la connection");
 		}
 	}
 
@@ -126,10 +126,11 @@ public class ContactDao {
 	public void recuperer() {
 		Utils u = Utils.getInstance();
 		Connection connection = u.connexionbdd();
-
+		String sql = null;
 		try {
 			stmt = connection.createStatement();
-			rst = stmt.executeQuery("SELECT * FROM Contact");
+			 sql ="SELECT * FROM Contact";
+			rst = stmt.executeQuery("\""+ sql +"\"");
 			while (rst.next()) {
 				System.out.println(rst.getString("nom") + ":"
 						+ rst.getString("prenom") + ":"
@@ -141,13 +142,13 @@ public class ContactDao {
 			stmt.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("La requete est incorrecte" + sql);
 		}
 		try {
 			connection.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Impossible de fermer la connection");
 		}
 
 	}
