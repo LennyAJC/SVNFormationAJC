@@ -3,11 +3,15 @@
  */
 package fr.lenny.contact.impl;
 
+import java.util.Comparator;
+
 /**
  * @author ajc
  *
  */
 public interface IContact {
+
+	Comparator<IContact> NomContactComparator = null;
 
 	public void enregistrer();
 	

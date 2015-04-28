@@ -101,7 +101,7 @@ public class ContactDao {
 		try {
 			stmt = connection.createStatement();
 			stmt.executeUpdate("INSERT INTO "
-					+ "Contact "
+					+ "Contact (Nom,Prenom,Telephone)"
 					+ "VALUES('" + icd.getNom() + "','" + icd.getPrenom() + "','" + icd.getTelephone() + "')");
 			System.out.println("insertion ok!");
 			stmt.close();
@@ -130,7 +130,7 @@ public class ContactDao {
 		try {
 			stmt = connection.createStatement();
 			 sql ="SELECT * FROM Contact";
-			rst = stmt.executeQuery("\""+ sql +"\"");
+			rst = stmt.executeQuery(sql);
 			while (rst.next()) {
 				System.out.println(rst.getString("nom") + ":"
 						+ rst.getString("prenom") + ":"

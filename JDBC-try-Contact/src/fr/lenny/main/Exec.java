@@ -3,8 +3,12 @@
  */
 package fr.lenny.main;
 
+import java.util.ArrayList;
+
+import fr.lenny.contact.CarnetAdresse;
 import fr.lenny.contact.factory.ContactFactory;
 import fr.lenny.contact.impl.IContact;
+import fr.lenny.utils.Utils;
 
 /**
  * @author ajc
@@ -12,43 +16,37 @@ import fr.lenny.contact.impl.IContact;
  */
 public class Exec {
 
+	static ArrayList<IContact> lstContact;
+	static int nbcontact;
+	static CarnetAdresse carnet;
+	static IContact ic;
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO DL mysqlconnector jar => OK
-		// TODO trouver adress du driver à charger avec CLASS.Form(com.)
-		// TODO connexion
-		// TODO creation statement
-		// TODO resultset
-		// TODO Creer une table Contact (nom, prenom, telephone)
-		// TODO 1 Classe pour insérer des contacts
-		// TODO 1 Classe pour recupérer des contacts a afficher dans la console
-		// TODO Structurer le code
 		// TODO Hibernate
 
 		ContactFactory cf = ContactFactory.getFactory();
-		IContact ic = cf.getInstance();
+		 
+		carnet = CarnetAdresse.getInstance();
 
-		ic.setNom("Marqueteau");
-		ic.setPrenom("Lenny");
-		ic.setTelephone("0102030405");
+		Utils utils = Utils.getInstance();
+		nbcontact = utils.lireInt("Combien de contact souhaitez-vous rentrer?");
 
-		ic.enregistrer();
-		
-		ic.setNom("AAA");
-		ic.setPrenom("AAAA");
-		ic.setTelephone("22222");
+		for (int i = 0; i < nbcontact; i++) {
+			ic = cf.getInstance();
+			ic.setNom(utils.lireString("Nom du contact ?"));
+			ic.setPrenom(utils.lireString("Prenom du contact ?"));
+			ic.setTelephone(utils.lireString("Numero de telephone ?"));
+			carnet.ajouterContact(ic);
+		}
 
-		ic.enregistrer();
-		
-		
-		ic.setNom("ZZZZZ");
-		ic.setPrenom("ZZZ");
-		ic.setTelephone("1111");
+		// ic.enregistrer();
 
-		ic.enregistrer();
+		carnet.afficherlst();
+
+		carnet.enregistrerList();
 		
-		ic.recuperer();
+		//ic.recuperer();
 	}
 }

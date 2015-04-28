@@ -85,7 +85,7 @@ public class ContactData implements IContactData {
 	 */
 	@Override
 	public void enregistrer() {
-		
+
 		ContactDao cd = ContactDao.getInstance();
 		cd.insert(this);
 
@@ -102,4 +102,5 @@ public class ContactData implements IContactData {
 		ContactDao cd = ContactDao.getInstance();
 		cd.recuperer();
 	}
+
 }

@@ -3,6 +3,8 @@
  */
 package fr.lenny.contact;
 
+import java.util.Comparator;
+
 import fr.lenny.contact.impl.IContact;
 import fr.lenny.data.factory.ContactDataFactory;
 import fr.lenny.data.impl.IContactData;
@@ -89,7 +91,7 @@ public class Contact implements IContact {
 		icd.setNom(this.nom);
 		icd.setPrenom(this.prenom);
 		icd.setTelephone(this.telephone);
-		
+
 		icd.enregistrer();
 	}
 
@@ -102,10 +104,22 @@ public class Contact implements IContact {
 	public void recuperer() {
 		cdf = ContactDataFactory.getFactory();
 		icd = cdf.getInstance();
-		
+
 		icd.recuperer();
-		
 
 	}
 
+	public static Comparator<Contact> NomContactComparator = new Comparator<Contact>() {
+
+		public int compare(Contact c1, Contact c2) {
+			String nomContact1 = c1.getNom().toUpperCase();
+			String nomContact2 = c2.getNom().toUpperCase();
+
+			// ascending order
+			return nomContact1.compareTo(nomContact2);
+
+			// descending order
+			// return StudentName2.compareTo(StudentName1);
+		}
+	};
 }
