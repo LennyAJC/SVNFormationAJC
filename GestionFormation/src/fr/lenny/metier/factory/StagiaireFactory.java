@@ -11,17 +11,17 @@ import fr.lenny.metier.Stagiaire;
  */
 public class StagiaireFactory {
 
-	static private StagiaireFactory factory = null;
+	static private StagiaireFactory instance = null;
 
 	/**
 	 * This is the default factory method. It is called to create a new
-	 * Singleton when a new instance is needed and factory is null.
+	 * Singleton when a new instance is needed and _factory is null.
 	 */
 	public static StagiaireFactory getFactory() {
-		if (null == factory) {
-			factory = new StagiaireFactory();
+		if (null == instance) {
+			instance = new StagiaireFactory();
 		}
-		return factory;
+		return instance;
 	}
 
 	/**

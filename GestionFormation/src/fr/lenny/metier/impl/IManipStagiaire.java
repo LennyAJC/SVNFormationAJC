@@ -7,8 +7,6 @@ import java.util.ArrayList;
 
 import fr.lenny.metier.Stagiaire;
 
-
-
 /**
  * @author ajc
  *
@@ -21,14 +19,16 @@ public interface IManipStagiaire {
 	 * @return
 	 */
 	public ArrayList<Stagiaire> getStagiaire();
-	public void afficherlst() ;
+
+	public void afficherlst();
 
 	/**
 	 * Methode permettant d'ajouter un stagiaire
 	 */
-	public void ajouterStagiaire(Stagiaire stag);
+	public void ajouterStagiaire(IStagiaire istag);
 
 	public void trier();
+
 	public int moyenneAge();
-	
+
 }

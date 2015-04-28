@@ -3,23 +3,23 @@
  */
 package fr.lenny.metier.factory;
 
-import fr.lenny.utils.Utils;
+import fr.lenny.metier.ManipStagiaire;
 
 /**
- * @author Behelit
+ * @author ajc
  *
  */
-public class UtilsFactory {
+public class ManipStagiaireFactory {
 
-	static private UtilsFactory instance = null;
+	static private ManipStagiaireFactory instance = null;
 
 	/**
 	 * This is the default factory method. It is called to create a new
 	 * Singleton when a new instance is needed and _factory is null.
 	 */
-	public static UtilsFactory getFactory() {
+	public static ManipStagiaireFactory getFactory() {
 		if (null == instance) {
-			instance = new UtilsFactory();
+			instance = new ManipStagiaireFactory();
 		}
 		return instance;
 	}
@@ -27,7 +27,7 @@ public class UtilsFactory {
 	/**
 	 * This is the accessor for the Singleton.
 	 */
-	public Utils getInstance() {
-		return new Utils();
+	public ManipStagiaire getInstance() {
+		return new ManipStagiaire();
 	}
 }

@@ -23,11 +23,11 @@ import org.w3c.dom.Text;
 import fr.lenny.metier.Formation;
 import fr.lenny.metier.Stagiaire;
 import fr.lenny.metier.factory.FormationFactory;
-import fr.lenny.metier.factory.GestionStagiaireFactory;
+import fr.lenny.metier.factory.ManipStagiaireFactory;
 import fr.lenny.metier.factory.StagiaireFactory;
 import fr.lenny.metier.factory.UtilsFactory;
 import fr.lenny.metier.impl.IFormation;
-import fr.lenny.metier.impl.IGestionStagiaire;
+import fr.lenny.metier.impl.IManipStagiaire;
 import fr.lenny.metier.impl.IStagiaire;
 import fr.lenny.metier.impl.IUtils;
 
@@ -49,41 +49,25 @@ public class Exec {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Gérer les dates
-		// TODO Lire le XML
-		// TODO Ajouter et supprimer une formation
+		// TODO Saisie d'une formation
+		// TODO Saisie des stagiaires
+		// TODO lien entre les stagiaires et formation
+		// TODO Affichage d'une moyenne d'age
+		// TODO Affichage d'une liste ordonnée par age
+		// TODO Sauvegarde du modèle ==> fichier .t (Machin suit la formation
+		// toto à telle date)
 
-		/**
-		 * Instanciation de la fabrique de Liste de stagiaire
-		 */
-		GestionStagiaireFactory gstagf = GestionStagiaireFactory.getFactory();
-		IGestionStagiaire igstag = gstagf.getInstance();
+		ManipStagiaireFactory mstagf = ManipStagiaireFactory.getFactory();
+		IManipStagiaire mstag = mstagf.getInstance();
 
-		/**
-		 * Instanciation de la fabrique de Liste de formation //TODO S'en servir
-		 * 
-		 * 
-		 * GestionFormationFactory gformf = GestionFormationFactory.getFactory(); 
-		 * IGestionFormation igfor = gformf.getInstance();
-		 */
-		
-		/**
-		 * Instanciation de la fabrique d'Utils
-		 */
 		UtilsFactory ufac = UtilsFactory.getFactory();
 		IUtils iut = ufac.getInstance();
 
-		/**
-		 * Instanciation de la fabrique de formation
-		 */
-
 		FormationFactory ffac = FormationFactory.getFactory();
-		IFormation ifor = null;
 
-		/**
-		 * Instanciation de la fabrique de stagiaire
-		 */
 		StagiaireFactory sfac = StagiaireFactory.getFactory();
+
+		IFormation ifor = null;
 		IStagiaire istag = null;
 
 		// iut.sc = new Scanner(System.in);
@@ -106,25 +90,29 @@ public class Exec {
 			age = iut.lireInt("Saisissez l'age du stagiaire n°" + i);
 
 			istag = sfac.getInstance(nom, prenom, age);
-			igstag.ajouterStagiaire(istag);
+			mstag.ajouterStagiaire(istag);
 		}
 
 		iut.afficher("\n");
 		iut.afficher("Affichage de la liste des stagiaires saisis : ");
-		igstag.afficherlst();
+		mstag.afficherlst();
 
 		iut.afficher("\n");
 		iut.afficher("Affichage de la liste des stagiaires triés : ");
-		igstag.trier();
-		igstag.afficherlst();
+		mstag.trier();
+		mstag.afficherlst();
 		iut.afficher("\n");
 		iut.afficher("Affichage de la moyenne d'age des stagiaires saisis : ");
-		System.out.println(igstag.moyenneAge());
+		System.out.println(mstag.moyenneAge());
 
+		// recuperation de la liste des stagiaires
+		
 
 		// Creation de la formation avec ajout des stagiaires
 		ifor = ffac.getInstance(nomFormation, dateFormation, nbSta,
 				lstStagiaire);
+		// Formation form = new Formation();
+		// FileWriter fichier = null;
 
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		try {
@@ -147,17 +135,17 @@ public class Exec {
 			// nlsttag.appendChild(text3);
 			nform.appendChild(nlsttag);
 			int compteur = 1;
-			ArrayList<Stagiaire> lstStagiaire = igstag.getStagiaire();
+			ArrayList<Stagiaire> lstStagiaire = mstag.getStagiaire();
 			for (Stagiaire stagiaire : lstStagiaire) {
 
 				Element nstag = doc.createElement("Stagiaire");
 				nstag.setAttribute("numero", String.valueOf(compteur));
 				nlsttag.appendChild(nstag);
 
-				Element nnogstag = doc.createElement("Stagiaire");
-				Text tnogstag = doc.createTextNode(stagiaire.getNom());
-				nnogstag.appendChild(tnogstag);
-				nlsttag.appendChild(nnogstag);
+				Element nnomstag = doc.createElement("Stagiaire");
+				Text tnomstag = doc.createTextNode(stagiaire.getNom());
+				nnomstag.appendChild(tnomstag);
+				nlsttag.appendChild(nnomstag);
 
 				Element nprestag = doc.createElement("Stagiaire");
 				Text tprestag = doc.createTextNode(stagiaire.getPrenom());
@@ -172,6 +160,19 @@ public class Exec {
 				compteur++;
 
 			}
+			// fichier.write("</ListeStagiaires>");
+			// fichier.write("</Formation>");
+			// fichier.close();
+
+			// TransformerFactory tf = TransformerFactory.newInstance();
+			// Transformer transformer = tf.newTransformer();
+			// transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+			// StringWriter sw = new StringWriter();
+			// StreamResult sr = new StreamResult(sw);
+			// DOMSource source = new DOMSource(doc);
+			// transformer.transform(source, sr);
+			// String xmlString = sw.toString();
+			// System.out.println(xmlString);
 
 			TransformerFactory tf = TransformerFactory.newInstance();
 			Transformer transformer = tf.newTransformer();
@@ -190,4 +191,56 @@ public class Exec {
 		}
 	}
 
+	//
+	//
+	// fichier = new FileWriter("file.xml");
+	// fichier.write("<Formation>");
+	// fichier.write("<NomFormation>" + ifor.getNomFormation()
+	// +"</NomFormation>");
+	// fichier.write( "<date>" + ifor.getDateFormation() + "</date>");
+	// fichier.write("<ListeStagiaires>");
+	// int compteur =0;
+	// for (Stagiaire Stagiaire : lstStagiaire) {
+	// compteur++;
+	// fichier.write("<Stagiaire numero=" + compteur + ">");
+	// fichier.write("<Nom>" + istag.getNom() + "</Nom>");
+	// fichier.write("<Prenom>" + istag.getPrenom() + "</Prenom>");
+	// fichier.write("<Age>" + istag.getAge() + "</Age>");
+	// fichier.write("</Stagiaire>");
+	//
+	// }
+	// fichier.write("</ListeStagiaires>");
+	// fichier.write("</Formation>");
+	// fichier.close();
+	// }
+	//
+	// catch (FileNotFoundException e) {
+	// // TODO Auto-generated catch block
+	// System.out.println("Le fichier est introuvable");
+	// } catch (IOException e) {
+	// // TODO Auto-generated catch block
+	// System.out.println("Impossible d'écrire dans le flux");
+	// } catch (ParserConfigurationException e) {
+	// // TODO Auto-generated catch block
+	// e.printStackTrace();
+	// } finally {
+	// try {
+	// fichier.close();
+	// } catch (IOException ex) {
+	// System.out.println("Impossible de fermer le flux");
+	// }
+	//
+	// }
+	// }
+
+	public static Document createDomDocument() {
+		try {
+			DocumentBuilder builder = DocumentBuilderFactory.newInstance()
+					.newDocumentBuilder();
+			Document doc = builder.newDocument();
+			return doc;
+		} catch (ParserConfigurationException e) {
+		}
+		return null;
+	}
 }
