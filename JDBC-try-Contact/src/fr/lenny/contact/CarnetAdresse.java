@@ -96,7 +96,7 @@ public class CarnetAdresse implements ICarnetAdresse {
 			icd.setPrenom(iContact.getPrenom());
 			icd.setTelephone(iContact.getTelephone());
 
-			icd.enregistrer();
+			icd.enregistrer(icd);
 		}
 
 	}

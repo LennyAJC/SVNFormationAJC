@@ -9,7 +9,7 @@ package fr.lenny.data.impl;
  */
 public interface IContactData {
 
-	public void enregistrer();
+	public void enregistrer(IContactData icd);
 	
 	public void recuperer();
 	

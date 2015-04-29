@@ -84,7 +84,7 @@ public class ContactData implements IContactData {
 	 * @see fr.lenny.dao.impl.IContactDao#enregistrer()
 	 */
 	@Override
-	public void enregistrer() {
+	public void enregistrer(IContactData icd) {
 
 		ContactDao cd = ContactDao.getInstance();
 		cd.insert(this);

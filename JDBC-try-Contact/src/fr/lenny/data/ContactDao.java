@@ -3,13 +3,11 @@
  */
 package fr.lenny.data;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import fr.lenny.data.impl.IContactData;
-import fr.lenny.utils.Utils;
+import fr.lenny.utils.SQLUtils;
 
 /**
  * @author ajc
@@ -17,138 +15,62 @@ import fr.lenny.utils.Utils;
  */
 public class ContactDao {
 
-	String nom;
-	String prenom;
-	String telephone;
-
-	Statement stmt = null;
 	ResultSet rst = null;
 
 	static ContactDao instance = null;
-	
+
+	/**
+	 * Constructor de la classe ContactDao
+	 */
 	public ContactDao() {
 
 	}
 
-	public ContactDao(String nom, String prenom, String telephone) {
-		super();
-		this.nom = nom;
-		this.prenom = prenom;
-		this.telephone = telephone;
-
-	}
-
+	/**
+	 * Singleton de la classe ContactDao
+	 */
 	public static ContactDao getInstance() {
 		if (null == instance) {
 			instance = new ContactDao();
 		}
 		return instance;
 	}
-	/**
-	 * @return the nom
-	 */
-	public String getNom() {
-		return nom;
-	}
 
 	/**
-	 * @param nom
-	 *            the nom to set
-	 */
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-	/**
-	 * @return the prenom
-	 */
-	public String getPrenom() {
-		return prenom;
-	}
-
-	/**
-	 * @param prenom
-	 *            the prenom to set
-	 */
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
-
-	/**
-	 * @return the telephone
-	 */
-	public String getTelephone() {
-		return telephone;
-	}
-
-	/**
-	 * @param telephone
-	 *            the telephone to set
-	 */
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see fr.lenny.dao.impl.IContactDao#enregistrer()
+	 * Methode permettant d'inserer des contacts dans le SGBD
+	 *
 	 */
 	public void insert(IContactData icd) {
-		Utils u = Utils.getInstance();
-		Connection connection = u.connexionbdd();
+		SQLUtils sqlu = SQLUtils.getInstance();
 
-		try {
-			stmt = connection.createStatement();
-			stmt.executeUpdate("INSERT INTO "
-					+ "Contact (Nom,Prenom,Telephone)"
-					+ "VALUES('" + icd.getNom() + "','" + icd.getPrenom() + "','" + icd.getTelephone() + "')");
-			System.out.println("insertion ok!");
-			stmt.close();
+		String sql = "INSERT INTO " + "Contact (Nom,Prenom,Telephone)"
+				+ "VALUES('" + icd.getNom() + "','" + icd.getPrenom() + "','"
+				+ icd.getTelephone() + "')";
+		 sqlu.executeSQL(sql, "INS");
 
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			System.out.println("La requete est incorrecte");
-		}
-		try {
-			connection.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Impossible de fermer la connection");
-		}
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Methode permettant de lister les contacts contenu dans le SGBD
 	 * 
-	 * @see fr.lenny.dao.impl.IContactDao#recuperer()
 	 */
 	public void recuperer() {
-		Utils u = Utils.getInstance();
-		Connection connection = u.connexionbdd();
-		String sql = null;
+
+		SQLUtils sqlu = SQLUtils.getInstance();
+
+		String sql = "SELECT * FROM Contact";
+		rst = sqlu.executeSQL(sql, "SEL");
+
 		try {
-			stmt = connection.createStatement();
-			 sql ="SELECT * FROM Contact";
-			rst = stmt.executeQuery(sql);
 			while (rst.next()) {
 				System.out.println(rst.getString("nom") + ":"
 						+ rst.getString("prenom") + ":"
 						+ rst.getString("telephone"));
-				
-				
 
 			}
-			stmt.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.out.println("La requete est incorrecte" + sql);
-		}
-		try {
-			connection.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Impossible de fermer la connection");
+			e.printStackTrace();
 		}
 
 	}

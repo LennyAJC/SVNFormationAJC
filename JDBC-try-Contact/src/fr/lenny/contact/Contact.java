@@ -84,15 +84,15 @@ public class Contact implements IContact {
 	 * @see fr.lenny.contact.impl.IContact#enregistrer()
 	 */
 	@Override
-	public void enregistrer() {
+	public void enregistrer(IContactData icd) {
 		cdf = ContactDataFactory.getFactory();
 		icd = cdf.getInstance();
 
-		icd.setNom(this.nom);
-		icd.setPrenom(this.prenom);
-		icd.setTelephone(this.telephone);
+//		icd.setNom(this.nom);
+//		icd.setPrenom(this.prenom);
+//		icd.setTelephone(this.telephone);
 
-		icd.enregistrer();
+		icd.enregistrer(icd);
 	}
 
 	/*

@@ -5,6 +5,8 @@ package fr.lenny.contact.impl;
 
 import java.util.Comparator;
 
+import fr.lenny.data.impl.IContactData;
+
 /**
  * @author ajc
  *
@@ -13,7 +15,7 @@ public interface IContact {
 
 	Comparator<IContact> NomContactComparator = null;
 
-	public void enregistrer();
+	public void enregistrer(IContactData icd);
 	
 	public void recuperer();
 	
