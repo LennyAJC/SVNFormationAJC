@@ -7,6 +7,7 @@ package fr.lenny.metier;
  * @author ajc
  *
  */
+@Deprecated
 public class CPFactory {
 
 	private static CPFactory factory = null;
