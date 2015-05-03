@@ -31,7 +31,7 @@ public class ControleurCooking {
 	}
 
 	public void launch(String fenetre) {
-
+		System.out.println("Lancement :" + fenetre + "\n");
 		ffa = FenetreFactory.getFactory();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -40,12 +40,12 @@ public class ControleurCooking {
 					if (fenetre.equals("FR")) {
 						rb = RecetteBean.getInstance();
 						window = ffa.getInstance(fenetre, rb, getInstance());
-					}
-					else if(fenetre.equals("FI")){
+					} else if (fenetre.equals("FI")) {
 						ib = IngredientBean.getInstance();
+						System.out.println(fenetre + "," + ib + ","
+								+ getInstance());
 						window = ffa.getInstance(fenetre, ib, getInstance());
-					}
-					else{
+					} else if (fenetre.equals("MF")) {
 						window = ffa.getInstance(fenetre, null, getInstance());
 					}
 				} catch (Exception e) {
@@ -57,10 +57,11 @@ public class ControleurCooking {
 	}
 
 	public void gestionIngredient() {
+
 		IngredientFactory igf = IngredientFactory.getFactory();
 		IIngredient ii = igf.getInstance();
 
-		ii.setNomIngredient("Sel");
+		ii.setNomIngredient(ib.getNomIngredient());
 		ii.enregistrer(ii);
 
 	}
@@ -72,24 +73,24 @@ public class ControleurCooking {
 		RecetteFactory rf = RecetteFactory.getFactory();
 		IRecette ir = rf.getInstance();
 
-		ir.setNomRecette("Gateau au sel");
-		ir.setDescription("Gateau au sel");
-		ir.enregistrer(ir);
+		ir.setNomRecette(rb.getNomRecette());
 
+		ir.enregistrer(ir);
 	}
 
 	/*
 	 * Ajouter l'ingrédient sélection à une liste d'ingrédient avant
 	 * d'enregistrer la recette.
 	 */
-	public void ajoutIngredientRecette() {
-		IngredientBean ingredient = IngredientBean.getInstance();
+	public void ajoutIngredientRecette(IFenetre fenetre) {
 
-		IngredientFactory igf = IngredientFactory.getFactory();
-		IIngredient ii = igf.getInstance();
-
-		ii.setNomIngredient(ingredient.getNomIngredient());
-		lstIngredient.add(ii);
+		lstIngredient.add((IIngredient) ib);
+		
+		
+		for (IIngredient iIngredient : lstIngredient) {
+			fenetre.setLstIngredientRecette(lstIngredientRecette);
+		}
+		
 	}
 
 	/*
@@ -97,12 +98,13 @@ public class ControleurCooking {
 	 * d'enregistrer la recette.
 	 */
 	public void delIngredientRecette() {
-		RecetteFactory rf = RecetteFactory.getFactory();
-		IRecette ir = rf.getInstance();
 
-		ir.setNomRecette("Gateau au sel");
-		ir.setDescription("Gateau au sel");
-		ir.enregistrer(ir);
+		int compteur = 0;
+		for (IIngredient iIngredient : lstIngredient) {
+			compteur++;
+			if (iIngredient.getNomIngredient().equals(ib.getNomIngredient()));
+			lstIngredient.remove(compteur);
+		}
 
 	}
 }

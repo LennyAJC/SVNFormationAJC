@@ -5,9 +5,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
+import fr.cooking.metier.IIngredient;
 import fr.cooking.presentation.controlers.ControleurCooking;
 import fr.cooking.presentation.views.IFenetre;
 
@@ -20,12 +24,15 @@ public class MainFenetreImpl extends JFrame implements IFenetre {
 
 	ControleurCooking controler;
 
-	public MainFenetreImpl() {
+	JFrame mainfenetre;
 
+	public MainFenetreImpl() {
+		initialize();
 	}
 
 	public MainFenetreImpl(ControleurCooking cc) {
 		this.controler = cc;
+		System.out.println("Passage Constructeur");
 		initialize();
 
 	}
@@ -35,16 +42,21 @@ public class MainFenetreImpl extends JFrame implements IFenetre {
 	}
 
 	public void initialize() {
-		setTitle("Cooking In Full Swing");
-		getContentPane().setLayout(null);
 
+		mainfenetre = new JFrame();
+		mainfenetre.setBounds(100, 100, 217, 194);
+		mainfenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("Cooking In Full Swing");
+		mainfenetre.getContentPane().setLayout(null);
+		this.mainfenetre.setVisible(true);
+		
 		JLabel lblMenuPrincipal = new JLabel("Menu principal");
 		lblMenuPrincipal.setBounds(69, 36, 82, 14);
-		getContentPane().add(lblMenuPrincipal);
+		mainfenetre.getContentPane().add(lblMenuPrincipal);
 
 		JButton btnRecette = new JButton("Gestion Recettes");
 		btnRecette.setBounds(42, 66, 129, 23);
-		getContentPane().add(btnRecette);
+		mainfenetre.getContentPane().add(btnRecette);
 
 		btnRecette.addMouseListener(new MouseAdapter() {
 			@Override
@@ -61,7 +73,7 @@ public class MainFenetreImpl extends JFrame implements IFenetre {
 
 		JButton btnIngredient = new JButton("Gestion Ingredients");
 		btnIngredient.setBounds(42, 114, 129, 23);
-		getContentPane().add(btnIngredient);
+		mainfenetre.getContentPane().add(btnIngredient);
 
 		btnIngredient.addMouseListener(new MouseAdapter() {
 			@Override
@@ -74,5 +86,89 @@ public class MainFenetreImpl extends JFrame implements IFenetre {
 			}
 		});
 
+	}
+
+	@Override
+	public JTextField getTextField() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setTextField(JTextField textField) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public JComboBox<IIngredient> getCblstIngredients() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setCblstIngredients(JComboBox<IIngredient> cblstIngredients) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public JTextField getTxtRecette() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setTxtRecette(JTextField txtRecette) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public JTextField getTxtDescription() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setTxtDescription(JTextField txtDescription) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public JTextField getTquantite() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setTquantite(JTextField tquantite) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public JTextField gettIngredient() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void settIngredient(JTextField tIngredient) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public JTextArea getLstIngredientRecette() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setLstIngredientRecette(JTextArea lstIngredientRecette) {
+		// TODO Auto-generated method stub
+		
 	}
 }
