@@ -8,6 +8,7 @@ import fr.cooking.metier.IRecette;
 import fr.cooking.metier.IngredientFactory;
 import fr.cooking.metier.RecetteFactory;
 import fr.cooking.presentation.beans.IngredientBean;
+import fr.cooking.presentation.beans.RecetteBean;
 import fr.cooking.presentation.views.FenetreFactory;
 import fr.cooking.presentation.views.IFenetre;
 
@@ -15,6 +16,8 @@ public class ControleurCooking {
 
 	static FenetreFactory ffa = null;
 	static IFenetre window = null;
+	private RecetteBean rb;
+	private IngredientBean ib;
 
 	ArrayList<IIngredient> lstIngredient = null;
 
@@ -27,14 +30,24 @@ public class ControleurCooking {
 		return instance;
 	}
 
-	public void launch() {
+	public void launch(String fenetre) {
 
 		ffa = FenetreFactory.getFactory();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				try {
-					window = ffa.getInstance("MF");
 
+				try {
+					if (fenetre.equals("FR")) {
+						rb = RecetteBean.getInstance();
+						window = ffa.getInstance(fenetre, rb, getInstance());
+					}
+					else if(fenetre.equals("FI")){
+						ib = IngredientBean.getInstance();
+						window = ffa.getInstance(fenetre, ib, getInstance());
+					}
+					else{
+						window = ffa.getInstance(fenetre, null, getInstance());
+					}
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -71,10 +84,10 @@ public class ControleurCooking {
 	 */
 	public void ajoutIngredientRecette() {
 		IngredientBean ingredient = IngredientBean.getInstance();
-				
+
 		IngredientFactory igf = IngredientFactory.getFactory();
 		IIngredient ii = igf.getInstance();
-		
+
 		ii.setNomIngredient(ingredient.getNomIngredient());
 		lstIngredient.add(ii);
 	}

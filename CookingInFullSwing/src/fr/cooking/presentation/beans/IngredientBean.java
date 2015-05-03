@@ -1,13 +1,10 @@
 package fr.cooking.presentation.beans;
 
-public class IngredientBean {
+public class IngredientBean implements IBean {
 
 	String nomIngredient;
 	static IngredientBean instance = null;
 
-	public String getNomIngredient() {
-		return nomIngredient;
-	}
 
 	static public IngredientBean getInstance() {
 		if (instance == null) {
@@ -16,6 +13,11 @@ public class IngredientBean {
 		return instance;
 	}
 
+
+	public String getNomIngredient() {
+		return nomIngredient;
+	}
+	
 	public void setNomIngredient(String nomIngredient) {
 		this.nomIngredient = nomIngredient;
 	}

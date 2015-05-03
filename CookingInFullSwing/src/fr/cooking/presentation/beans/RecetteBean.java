@@ -1,9 +1,18 @@
 package fr.cooking.presentation.beans;
 
-public class RecetteBean {
+public class RecetteBean implements IBean{
 	String nomRecette;
 	String description;
 	String quantite;
+
+	static RecetteBean instance = null;
+
+	static public RecetteBean getInstance() {
+		if (instance == null) {
+			instance = new RecetteBean();
+		}
+		return instance;
+	}
 
 	public String getQuantite() {
 		return quantite;

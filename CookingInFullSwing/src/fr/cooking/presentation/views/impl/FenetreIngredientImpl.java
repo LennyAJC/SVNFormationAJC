@@ -9,8 +9,9 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import fr.cooking.presentation.beans.IBean;
+import fr.cooking.presentation.beans.IngredientBean;
 import fr.cooking.presentation.controlers.ControleurCooking;
-import fr.cooking.presentation.views.FenetreFactory;
 import fr.cooking.presentation.views.IFenetre;
 
 public class FenetreIngredientImpl extends JFrame implements IFenetre {
@@ -18,12 +19,17 @@ public class FenetreIngredientImpl extends JFrame implements IFenetre {
 	/**
 	 * 
 	 */
-	FenetreFactory ffa = null;
-	IFenetre window = null;
-	ControleurCooking cc = null;
+	IngredientBean bean;
+	ControleurCooking controler;
 
 	private static final long serialVersionUID = 1L;
 	private JTextField textField;
+
+	public FenetreIngredientImpl(IBean bean, ControleurCooking cc) {
+		this.controler = cc;
+		this.bean = (IngredientBean) bean;
+		initialize();
+	}
 
 	public FenetreIngredientImpl() {
 		initialize();
@@ -46,7 +52,7 @@ public class FenetreIngredientImpl extends JFrame implements IFenetre {
 		setTitle("Gestion des ingr\u00E9dients");
 		getContentPane().setLayout(null);
 
-		JLabel lblIngredient = new JLabel("Ingredient");
+		JLabel lblIngredient = new JLabel("Ingredient :");
 		lblIngredient.setBounds(35, 62, 69, 14);
 		getContentPane().add(lblIngredient);
 
@@ -59,8 +65,7 @@ public class FenetreIngredientImpl extends JFrame implements IFenetre {
 		btnAjouter.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				cc = ControleurCooking.getInstance();
-				cc.gestionIngredient();
+				controler.gestionIngredient();
 			}
 		});
 		btnAjouter.setBounds(114, 101, 91, 23);
@@ -70,7 +75,7 @@ public class FenetreIngredientImpl extends JFrame implements IFenetre {
 		taIngredients.setBounds(230, 31, 202, 220);
 		getContentPane().add(taIngredients);
 
-		JLabel lblIngredients = new JLabel("Inserer un nouvel ingredient");
+		JLabel lblIngredients = new JLabel("Inserer un nouvel ingredient :");
 		lblIngredients.setBounds(35, 25, 165, 14);
 		getContentPane().add(lblIngredients);
 

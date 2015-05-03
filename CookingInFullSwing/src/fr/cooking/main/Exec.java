@@ -18,7 +18,7 @@ public class Exec {
 
 		ControleurCooking cc = ControleurCooking.getInstance();
 		
-		cc.launch();
+		cc.launch("MF");
 	}
 
 }

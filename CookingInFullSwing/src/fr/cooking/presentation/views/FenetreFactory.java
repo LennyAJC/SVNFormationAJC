@@ -1,5 +1,7 @@
 package fr.cooking.presentation.views;
 
+import fr.cooking.presentation.beans.IBean;
+import fr.cooking.presentation.controlers.ControleurCooking;
 import fr.cooking.presentation.views.impl.FenetreIngredientImpl;
 import fr.cooking.presentation.views.impl.FenetreRecetteImpl;
 import fr.cooking.presentation.views.impl.MainFenetreImpl;
@@ -16,14 +18,14 @@ public class FenetreFactory {
 		return factory;
 	}
 
-	public IFenetre getInstance(String classe) {
+	public IFenetre getInstance(String classe, IBean bean, ControleurCooking controler) {
 
 		if (classe.equals("FI")) {
-			instance = new FenetreIngredientImpl();
+			instance = new FenetreIngredientImpl(bean, controler);
 		} else if (classe.equals("FR")) {
-			instance = new FenetreRecetteImpl();
+			instance = new FenetreRecetteImpl(bean, controler);
 		} else if (classe.equals("MF")) {
-			instance = new MainFenetreImpl();
+			instance = new MainFenetreImpl(controler);
 		}
 		return instance;
 
