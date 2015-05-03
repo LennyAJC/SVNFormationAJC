@@ -55,7 +55,7 @@ public class SQLUtils {
 
 		try {
 			connection = DriverManager.getConnection(
-					"jdbc:mysql://127.0.0.1:3306/Contact", "root", "");
+					"jdbc:mysql://127.0.0.1:3306/CookingInFullSwing", "root", "");
 		} catch (SQLException e) {
 			System.out.println("Base de données introuvable ! ");
 		}
@@ -85,6 +85,17 @@ public class SQLUtils {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println("La requete est incorrecte" + sql);
+			   System.out.println("Exception SQL : ");
+			   while (e != null) {
+			      String message = e.getMessage();
+			      String sqlState = e.getSQLState();
+			      int errorCode = e.getErrorCode();
+			      System.out.println("Message = "+message);
+			      System.out.println("SQLState = "+sqlState);
+			      System.out.println("ErrorCode = "+errorCode);
+			      e.printStackTrace();
+			      e = e.getNextException();
+			   }
 		}
 		try {
 			connection.close();

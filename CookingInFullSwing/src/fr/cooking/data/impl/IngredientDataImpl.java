@@ -44,7 +44,8 @@ public class IngredientDataImpl implements IIngredientData {
 
 	public void enregistrer(IIngredientData ingredient) {
 		IngredientDao id = IngredientDao.getInstance();
-		id.insererIngredient(ingredient);
+		id.setNomIngredient(this.getNomIngredient());
+		id.insererIngredient(id);
 	}
 
 	public IIngredientData recupererIngredient() {

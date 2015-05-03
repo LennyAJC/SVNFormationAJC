@@ -3,6 +3,7 @@
  */
 package fr.cooking.metier;
 
+
 /**
  * @author ajc
  *
@@ -20,5 +21,7 @@ public interface IIngredient {
 	 *            the nomIngredient to set
 	 */
 	public void setNomIngredient(String nomIngredient);
+	
+	public void enregistrer(IIngredient ingredient);
 
 }

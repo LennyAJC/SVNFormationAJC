@@ -3,6 +3,7 @@
  */
 package fr.cooking.data;
 
+
 /**
  * @author ajc
  *

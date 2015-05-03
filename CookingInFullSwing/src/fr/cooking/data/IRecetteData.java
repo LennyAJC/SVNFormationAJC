@@ -3,7 +3,6 @@
  */
 package fr.cooking.data;
 
-import fr.cooking.data.impl.RecetteDataImpl;
 
 /**
  * @author ajc
@@ -12,9 +11,20 @@ import fr.cooking.data.impl.RecetteDataImpl;
 public interface IRecetteData {
 
 	/**
+	 * @param description
+	 *            the description to set
+	 */
+	public void setDescription(String description);
+
+	/**
 	 * @return the nomIngredient
 	 */
 	public String getNomRecette();
+
+	/**
+	 * @return the description
+	 */
+	public String getDescription();
 
 	/**
 	 * @param nomIngredient
@@ -22,7 +32,8 @@ public interface IRecetteData {
 	 */
 	public void setNomRecette(String nomRecette);
 
-	public void enregistrer(RecetteDataImpl recette);
-	
+	public void enregistrer(IRecetteData recette);
+
 	public IRecetteData recupererIngredient();
+
 }

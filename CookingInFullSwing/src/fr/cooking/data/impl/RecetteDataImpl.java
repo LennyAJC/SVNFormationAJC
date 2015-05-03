@@ -21,22 +21,21 @@ public class RecetteDataImpl implements IRecetteData {
 		return description;
 	}
 
-
 	/**
-	 * @param description the description to set
+	 * @param description
+	 *            the description to set
 	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-
 	public RecetteDataImpl() {
 
 	}
 
-	
 	/**
 	 * Constructeur IngredientData
+	 * 
 	 * @param nomIngredient
 	 */
 	public RecetteDataImpl(String nomRecette) {
@@ -57,13 +56,12 @@ public class RecetteDataImpl implements IRecetteData {
 	public void setNomRecette(String nomRecette) {
 		this.nomRecette = nomRecette;
 	}
-	
 
-	public void enregistrer(RecetteDataImpl recette) {
+	public void enregistrer(IRecetteData recette) {
 		RecetteDao rd = RecetteDao.getInstance();
 		rd.insererRecette(recette);
 	}
-	
+
 	public IRecetteData recupererIngredient() {
 
 		RecetteDao ird = RecetteDao.getInstance();

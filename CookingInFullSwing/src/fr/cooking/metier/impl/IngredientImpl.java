@@ -3,6 +3,8 @@
  */
 package fr.cooking.metier.impl;
 
+import fr.cooking.data.IIngredientData;
+import fr.cooking.data.IngredientDataFactory;
 import fr.cooking.metier.IIngredient;
 
 /**
@@ -34,5 +36,12 @@ public class IngredientImpl implements IIngredient {
 	 */
 	public void setNomIngredient(String nomIngredient) {
 		this.nomIngredient = nomIngredient;
+	}
+	
+	public void enregistrer(IIngredient ingredient){
+		IngredientDataFactory idf = IngredientDataFactory.getFactory();
+		IIngredientData id = idf.getInstance();
+		id.setNomIngredient(ingredient.getNomIngredient());
+		id.enregistrer(id);
 	}
 }

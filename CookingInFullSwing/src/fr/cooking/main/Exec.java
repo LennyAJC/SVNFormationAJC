@@ -3,6 +3,8 @@
  */
 package fr.cooking.main;
 
+import fr.cooking.presentation.controlers.ControleurCooking;
+
 /**
  * @author ajc
  *
@@ -13,8 +15,10 @@ public class Exec {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
+		ControleurCooking cc = ControleurCooking.getInstance();
+		
+		cc.launch();
 	}
 
 }
