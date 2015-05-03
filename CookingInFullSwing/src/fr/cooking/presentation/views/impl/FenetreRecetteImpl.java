@@ -28,7 +28,8 @@ public class FenetreRecetteImpl extends JFrame implements IFenetre {
 	private static final long serialVersionUID = 1L;
 	private JTextField txtRecette;
 	private JTextField txtDescription;
-	JComboBox<IIngredient> cblstIngredients;
+	//JComboBox<IIngredient> cblstIngredients;
+	JComboBox cblstIngredients;
 	private JTextField tquantite;
 	JFrame fenetreRecette;
 	JTextArea lstIngredientRecette;
@@ -90,10 +91,14 @@ public class FenetreRecetteImpl extends JFrame implements IFenetre {
 		lblListeDesIngrdients.setBounds(350, 44, 158, 14);
 		fenetreRecette.getContentPane().add(lblListeDesIngrdients);
 
-		cblstIngredients = new JComboBox<IIngredient>();
+		//cblstIngredients = new JComboBox<IIngredient>();
+		cblstIngredients = new JComboBox();
 		cblstIngredients.setBounds(80, 313, 166, 20);
 		fenetreRecette.getContentPane().add(cblstIngredients);
 
+		cblstIngredients.addItem("Sel");
+		cblstIngredients.addItem("poivre");
+		cblstIngredients.addItem("etc");
 		JLabel lblIngredient = new JLabel("Ingredient :");
 		lblIngredient.setBounds(10, 316, 60, 14);
 		fenetreRecette.getContentPane().add(lblIngredient);
@@ -165,8 +170,12 @@ public class FenetreRecetteImpl extends JFrame implements IFenetre {
 		return lstIngredientRecette;
 	}
 
-	public void setLstIngredientRecette(JTextArea lstIngredientRecette) {
-		this.lstIngredientRecette = lstIngredientRecette;
+	public void setLstIngredientRecette(String nomIngredient) {
+		this.lstIngredientRecette.append(nomIngredient);
+	}
+	
+	public void lstIngredientRecetteClear() {
+		this.lstIngredientRecette.setText("");
 	}
 
 	public JComboBox<IIngredient> getCblstIngredients() {

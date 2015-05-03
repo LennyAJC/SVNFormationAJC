@@ -167,7 +167,13 @@ public class MainFenetreImpl extends JFrame implements IFenetre {
 	}
 
 	@Override
-	public void setLstIngredientRecette(JTextArea lstIngredientRecette) {
+	public void setLstIngredientRecette(String nomIngredient) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void lstIngredientRecetteClear() {
 		// TODO Auto-generated method stub
 		
 	}

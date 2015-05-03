@@ -28,13 +28,15 @@ public interface IFenetre {
 
 	public JTextField getTquantite();
 
-	public void setTquantite(JTextField tquantite);	
-	
+	public void setTquantite(JTextField tquantite);
+
 	public JTextField gettIngredient();
 
 	public void settIngredient(JTextField tIngredient);
-	
+
 	public JTextArea getLstIngredientRecette();
 
-	public void setLstIngredientRecette(JTextArea lstIngredientRecette);
+	public void setLstIngredientRecette(String nomIngredient);
+
+	public void lstIngredientRecetteClear();
 }

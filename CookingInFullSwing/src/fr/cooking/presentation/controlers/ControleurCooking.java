@@ -86,9 +86,10 @@ public class ControleurCooking {
 
 		lstIngredient.add((IIngredient) ib);
 		
+		fenetre.lstIngredientRecetteClear();
 		
 		for (IIngredient iIngredient : lstIngredient) {
-			fenetre.setLstIngredientRecette(lstIngredientRecette);
+			fenetre.setLstIngredientRecette(iIngredient.getNomIngredient());
 		}
 		
 	}
