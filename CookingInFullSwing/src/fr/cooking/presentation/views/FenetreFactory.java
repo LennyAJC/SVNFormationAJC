@@ -21,7 +21,7 @@ public class FenetreFactory {
 	public IFenetre getInstance(String classe, IBean rBean, IBean iBean, ControleurCooking controler) {
 
 		if (classe.equals("FI")) {
-			instance = new FenetreIngredientImpl(rBean, controler);
+			instance = new FenetreIngredientImpl(iBean, controler);
 		} else if (classe.equals("FR")) {
 			instance = new FenetreRecetteImpl(rBean, iBean, controler);
 		} else if (classe.equals("MF")) {

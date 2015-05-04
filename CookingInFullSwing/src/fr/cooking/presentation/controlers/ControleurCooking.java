@@ -63,13 +63,29 @@ public class ControleurCooking {
 
 	}
 
-	public void gestionIngredient() {
+	/**
+	 * Fenetre Ingredient : methode ajouterIngredient
+	 */
+	public void ajouterIngredient() {
 
 		IngredientFactory igf = IngredientFactory.getFactory();
 		IIngredient ii = igf.getInstance();
 
 		ii.setNomIngredient(iBean.getNomIngredient());
 		ii.enregistrer(ii);
+
+	}
+	
+	/**
+	 * Fenetre Ingredient : methode supprimerIngredient
+	 */
+	public void supprimerIngredient() {
+
+		IngredientFactory igf = IngredientFactory.getFactory();
+		IIngredient ii = igf.getInstance();
+
+		ii.setNomIngredient(iBean.getNomIngredient());
+		ii.supprimer(ii);
 
 	}
 

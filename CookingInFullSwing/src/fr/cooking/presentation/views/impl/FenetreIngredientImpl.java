@@ -72,6 +72,18 @@ public class FenetreIngredientImpl extends JFrame implements IFenetre {
 		JButton btnAjouter = new JButton("Ajouter");
 		btnAjouter.setBounds(114, 101, 91, 23);
 		fenetreIngredient.getContentPane().add(btnAjouter);
+
+		JButton btnSupprimer = new JButton("Supprimer");
+		btnSupprimer.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+
+				bean.setNomIngredient(tIngredient.getText());
+				controler.supprimerIngredient();
+			}
+		});
+		btnSupprimer.setBounds(114, 141, 91, 23);
+		fenetreIngredient.getContentPane().add(btnSupprimer);
 		/*
 		 * Ajout de l'ingredient saisi
 		 */
@@ -80,7 +92,7 @@ public class FenetreIngredientImpl extends JFrame implements IFenetre {
 			public void mouseClicked(MouseEvent arg0) {
 
 				bean.setNomIngredient(tIngredient.getText());
-				controler.gestionIngredient();
+				controler.ajouterIngredient();
 			}
 		});
 

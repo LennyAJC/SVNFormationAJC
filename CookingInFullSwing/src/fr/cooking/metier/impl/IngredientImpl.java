@@ -65,13 +65,19 @@ public class IngredientImpl implements IIngredient {
 		return lstIngredient;
 	}
 
-	/* (non-Javadoc)
-	 * @see fr.cooking.metier.IIngredient#supprimer(fr.cooking.metier.IIngredient)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * fr.cooking.metier.IIngredient#supprimer(fr.cooking.metier.IIngredient)
 	 */
 	@Override
 	public void supprimer(IIngredient ingredient) {
-		// TODO Auto-generated method stub
-		
+		IngredientDataFactory idf = IngredientDataFactory.getFactory();
+		IIngredientData id = idf.getInstance();
+		id.setNomIngredient(ingredient.getNomIngredient());
+		id.supprimer(id);
+
 	}
 
 }

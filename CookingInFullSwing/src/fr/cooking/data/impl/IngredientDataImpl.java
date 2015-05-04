@@ -70,7 +70,9 @@ public class IngredientDataImpl implements IIngredientData {
 	 */
 	@Override
 	public void supprimer(IIngredientData ingredient) {
-		// TODO Auto-generated method stub
+		IngredientDao id = IngredientDao.getInstance();
+		id.setNomIngredient(this.getNomIngredient());
+		id.supprimerIngredient(id);
 		
 	}
 

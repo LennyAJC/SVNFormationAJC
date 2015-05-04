@@ -7,8 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import fr.cooking.metier.IIngredient;
-
 /**
  * @author ajc
  *
@@ -67,13 +65,13 @@ public class IngredientDao {
 		return lstIngredient;
 
 	}
-	
 
-	public void supprimerIngredient(IIngredient ingredient) {
+	public void supprimerIngredient(IngredientDao id) {
 		// TODO Auto-generated method stub
 		SQLUtils sqlu = SQLUtils.getInstance();
 
-		String sql = "DELETE nomIngredient FROM ingredients WHERE nomIngredient ='" + ingredient.getNomIngredient() + "'";
+		String sql = "DELETE FROM ingredients WHERE nomIngredient ='"
+				+ id.getNomIngredient() + "'";
 		System.out.println(sql);
 
 		sqlu.executeSQL(sql, "UPD");

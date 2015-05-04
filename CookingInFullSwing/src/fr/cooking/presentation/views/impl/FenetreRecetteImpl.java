@@ -18,9 +18,6 @@ import fr.cooking.presentation.beans.RecetteBean;
 import fr.cooking.presentation.controlers.ControleurCooking;
 import fr.cooking.presentation.views.IFenetre;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
 public class FenetreRecetteImpl extends JFrame implements IFenetre {
 
 	/**
@@ -102,18 +99,19 @@ public class FenetreRecetteImpl extends JFrame implements IFenetre {
 		ls.add("moutarde");
 
 		cblstIngredients = new JComboBox(ls.toArray());
-		
-//		   ActionListener actionListener = new ActionListener() {public void actionPerformed(ActionEvent actionEvent) {
-//		        System.out.println("Selected: " + cblstIngredients.getSelectedItem());
-//		        //System.out.println(", Position: " + cblstIngredients.getSelectedIndex());
-//		      }
-//		    };
-//		    cblstIngredients.addActionListener(actionListener);
+
+		// ActionListener actionListener = new ActionListener() {public void
+		// actionPerformed(ActionEvent actionEvent) {
+		// System.out.println("Selected: " +
+		// cblstIngredients.getSelectedItem());
+		// //System.out.println(", Position: " +
+		// cblstIngredients.getSelectedIndex());
+		// }
+		// };
+		// cblstIngredients.addActionListener(actionListener);
 
 		cblstIngredients.setBounds(80, 313, 166, 20);
 		fenetreRecette.getContentPane().add(cblstIngredients);
-		
-
 
 		JLabel lblIngredient = new JLabel("Ingredient :");
 		lblIngredient.setBounds(10, 316, 60, 14);
@@ -144,7 +142,7 @@ public class FenetreRecetteImpl extends JFrame implements IFenetre {
 		btnAjouterIngredient.setIcon(new ImageIcon(FenetreRecetteImpl.class
 				.getResource("/img/btn-add-ico.png")));
 		btnAjouterIngredient.addMouseListener(new MouseAdapter() {
-			
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String ingredient = (String) cblstIngredients.getSelectedItem();

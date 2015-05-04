@@ -43,18 +43,18 @@ public class MainFenetreImpl extends JFrame implements IFenetre {
 	public void initialize() {
 
 		mainfenetre = new JFrame();
-		mainfenetre.setBounds(100, 100, 217, 194);
+		mainfenetre.setBounds(100, 100, 282, 221);
 		mainfenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Cooking In Full Swing");
 		mainfenetre.getContentPane().setLayout(null);
 		this.mainfenetre.setVisible(true);
 
 		JLabel lblMenuPrincipal = new JLabel("Menu principal");
-		lblMenuPrincipal.setBounds(69, 36, 82, 14);
+		lblMenuPrincipal.setBounds(89, 35, 82, 14);
 		mainfenetre.getContentPane().add(lblMenuPrincipal);
 
 		JButton btnRecette = new JButton("Gestion Recettes");
-		btnRecette.setBounds(42, 66, 129, 23);
+		btnRecette.setBounds(42, 66, 162, 23);
 		mainfenetre.getContentPane().add(btnRecette);
 
 		btnRecette.addMouseListener(new MouseAdapter() {
@@ -71,7 +71,7 @@ public class MainFenetreImpl extends JFrame implements IFenetre {
 		});
 
 		JButton btnIngredient = new JButton("Gestion Ingredients");
-		btnIngredient.setBounds(42, 114, 129, 23);
+		btnIngredient.setBounds(42, 114, 173, 23);
 		mainfenetre.getContentPane().add(btnIngredient);
 
 		btnIngredient.addMouseListener(new MouseAdapter() {
