@@ -65,17 +65,28 @@ public class IngredientDao {
 
 		SQLUtils sqlu = SQLUtils.getInstance();
 		ArrayList<IngredientDao> lstIngredient = new ArrayList<IngredientDao>();
-		String sql = "SELECT nomIngredient FROM Ingredients";
+		String sql = "SELECT nomingredient FROM ingredients";
 		rst = sqlu.executeSQL(sql, "SEL");
 
 		try {
 			while (rst.next()) {
-				this.setNomIngredient("nomIngredient");
+				setNomIngredient(rst.getString("nomIngredient"));
 				lstIngredient.add(this);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("La requete est incorrecte" + sql);
+			   System.out.println("Exception SQL : ");
+			   while (e != null) {
+			      String message = e.getMessage();
+			      String sqlState = e.getSQLState();
+			      int errorCode = e.getErrorCode();
+			      System.out.println("Message = "+message);
+			      System.out.println("SQLState = "+sqlState);
+			      System.out.println("ErrorCode = "+errorCode);
+			      e.printStackTrace();
+			      e = e.getNextException();
+			   }
 		}
 		return lstIngredient;
 

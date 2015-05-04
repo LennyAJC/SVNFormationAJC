@@ -24,7 +24,6 @@ public class ControleurCooking {
 
 	private static ControleurCooking instance = null;
 
-	
 	public static ControleurCooking getInstance() {
 		if (instance == null) {
 			instance = new ControleurCooking();
@@ -34,6 +33,7 @@ public class ControleurCooking {
 
 	/**
 	 * Methode permettant de lancer une fenêtre
+	 * 
 	 * @param fenetre
 	 */
 	public void launch(String fenetre) {
@@ -50,11 +50,11 @@ public class ControleurCooking {
 						lstIngredient = new ArrayList<String>();
 						window = ffa.getInstance(fenetre, rBean, iBean,
 								getInstance());
-						
+
 					} else if (fenetre.equals("FI")) {
 						rBean = RecetteBean.getInstance();
 						iBean = IngredientBean.getInstance();
-						
+
 						window = ffa.getInstance(fenetre, null, iBean,
 								getInstance());
 					} else if (fenetre.equals("MF")) {
@@ -81,7 +81,7 @@ public class ControleurCooking {
 		ii.enregistrer(ii);
 
 	}
-	
+
 	/**
 	 * Fenetre Ingredient : methode supprimerIngredient
 	 */
@@ -114,7 +114,6 @@ public class ControleurCooking {
 	 */
 	public void ajoutIngredientRecette(IFenetre fenetre, IBean bean) {
 
-		
 		lstIngredient.add(((IngredientBean) bean).getNomIngredient());
 
 		fenetre.lstIngredientRecetteClear();

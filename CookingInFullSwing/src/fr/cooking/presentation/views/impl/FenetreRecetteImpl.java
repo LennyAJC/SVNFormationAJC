@@ -1,5 +1,7 @@
 package fr.cooking.presentation.views.impl;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -12,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import fr.cooking.metier.IIngredient;
+import fr.cooking.metier.IngredientFactory;
 import fr.cooking.presentation.beans.IBean;
 import fr.cooking.presentation.beans.IngredientBean;
 import fr.cooking.presentation.beans.RecetteBean;
@@ -93,13 +97,27 @@ public class FenetreRecetteImpl extends JFrame implements IFenetre {
 		lblListeDesIngrdients.setBounds(350, 44, 158, 14);
 		fenetreRecette.getContentPane().add(lblListeDesIngrdients);
 
-		ArrayList<String> ls = new ArrayList<String>();
-		ls.add("sel");
-		ls.add("poivre");
-		ls.add("moutarde");
+		// ArrayList<String> ls = new ArrayList<String>();
+		// ls.add("sel");
+		// ls.add("poivre");
+		// ls.add("moutarde");
+		//
+		// cblstIngredients = new JComboBox(ls.toArray());
 
-		cblstIngredients = new JComboBox(ls.toArray());
+		IngredientFactory ifac = IngredientFactory.getFactory();
+		IIngredient ig = ifac.getInstance();
 
+		ArrayList<IIngredient> lstIngredient = new ArrayList<IIngredient>();
+		lstIngredient = ig.recupererIngredient();
+		
+		ArrayList<String> lstIngredientString = new ArrayList<String>();
+
+		for (IIngredient ingredient : lstIngredient) {
+			lstIngredientString.add(ingredient.getNomIngredient());
+			//System.out.println(ingredient.getNomIngredient());
+		}
+		cblstIngredients = new JComboBox(lstIngredientString.toArray());
+		
 		cblstIngredients.setBounds(80, 313, 166, 20);
 		fenetreRecette.getContentPane().add(cblstIngredients);
 
@@ -198,6 +216,10 @@ public class FenetreRecetteImpl extends JFrame implements IFenetre {
 	public void setCblstIngredients(JComboBox cblstIngredients) {
 		this.cblstIngredients = cblstIngredients;
 	}
+
+	// public JComboBox getCblstIngredientsClear() {
+	// return cblstIngredients.setModel("");;
+	// }
 
 	public JTextField getTxtRecette() {
 		return txtRecette;
