@@ -18,12 +18,12 @@ public class FenetreFactory {
 		return factory;
 	}
 
-	public IFenetre getInstance(String classe, IBean bean, ControleurCooking controler) {
+	public IFenetre getInstance(String classe, IBean rBean, IBean iBean, ControleurCooking controler) {
 
 		if (classe.equals("FI")) {
-			instance = new FenetreIngredientImpl(bean, controler);
+			instance = new FenetreIngredientImpl(rBean, controler);
 		} else if (classe.equals("FR")) {
-			instance = new FenetreRecetteImpl(bean, controler);
+			instance = new FenetreRecetteImpl(rBean, iBean, controler);
 		} else if (classe.equals("MF")) {
 			instance = new MainFenetreImpl(controler);
 		}

@@ -16,7 +16,7 @@ public class RecetteDao {
 
 	static private RecetteDao instance = null;
 	ResultSet rst = null;
-	
+
 	public RecetteDao() {
 
 	}
@@ -29,15 +29,15 @@ public class RecetteDao {
 	}
 
 	public void insererRecette(IRecetteData recette) {
-		
 
 		SQLUtils sqlu = SQLUtils.getInstance();
-		
+
 		String sql = "INSERT INTO recettes (nomRecette, description) VALUES ('"
-				+ recette.getNomRecette() + "','" +  recette.getDescription() + "')";
+				+ recette.getNomRecette() + "','" + recette.getDescription()
+				+ "')";
 		System.out.println(sql);
-		
-		rst = sqlu.executeSQL(sql, "INS");
+
+		rst = sqlu.executeSQL(sql, "UPD");
 	}
 
 	public IRecetteData recupererRecette() {
@@ -48,7 +48,7 @@ public class RecetteDao {
 
 		try {
 			while (rst.next()) {
-				//System.out.println(rst.getnomIngredient("nomIngredient"));
+				// System.out.println(rst.getnomIngredient("nomIngredient"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

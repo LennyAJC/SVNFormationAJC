@@ -10,7 +10,6 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import fr.cooking.metier.IIngredient;
 import fr.cooking.presentation.beans.IBean;
 import fr.cooking.presentation.beans.IngredientBean;
 import fr.cooking.presentation.controlers.ControleurCooking;
@@ -104,15 +103,15 @@ public class FenetreIngredientImpl extends JFrame implements IFenetre {
 	}
 
 	@Override
-	public JComboBox<IIngredient> getCblstIngredients() {
+	public JComboBox getCblstIngredients() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void setCblstIngredients(JComboBox<IIngredient> cblstIngredients) {
+	public void setCblstIngredients(JComboBox cblstIngredients) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -124,7 +123,7 @@ public class FenetreIngredientImpl extends JFrame implements IFenetre {
 	@Override
 	public void setTxtRecette(JTextField txtRecette) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -136,7 +135,7 @@ public class FenetreIngredientImpl extends JFrame implements IFenetre {
 	@Override
 	public void setTxtDescription(JTextField txtDescription) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -148,7 +147,7 @@ public class FenetreIngredientImpl extends JFrame implements IFenetre {
 	@Override
 	public void setTquantite(JTextField tquantite) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -160,12 +159,12 @@ public class FenetreIngredientImpl extends JFrame implements IFenetre {
 	@Override
 	public void setLstIngredientRecette(String nomIngredient) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void lstIngredientRecetteClear() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

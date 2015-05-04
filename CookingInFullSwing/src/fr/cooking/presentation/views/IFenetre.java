@@ -4,8 +4,6 @@ import javax.swing.JComboBox;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import fr.cooking.metier.IIngredient;
-
 public interface IFenetre {
 
 	public void initialize();
@@ -14,9 +12,9 @@ public interface IFenetre {
 
 	public void setTextField(JTextField textField);
 
-	public JComboBox<IIngredient> getCblstIngredients();
+	public JComboBox getCblstIngredients();
 
-	public void setCblstIngredients(JComboBox<IIngredient> cblstIngredients);
+	public void setCblstIngredients(JComboBox cblstIngredients);
 
 	public JTextField getTxtRecette();
 

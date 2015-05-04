@@ -3,6 +3,7 @@
  */
 package fr.cooking.data;
 
+import java.util.ArrayList;
 
 /**
  * @author ajc
@@ -22,6 +23,9 @@ public interface IIngredientData {
 	public void setNomIngredient(String nomIngredient);
 
 	public void enregistrer(IIngredientData ingredient);
-	
-	public IIngredientData recupererIngredient();
+
+	public ArrayList<IIngredientData> recupererIngredient();
+
+	public void supprimer(IIngredientData ingredient);
+
 }

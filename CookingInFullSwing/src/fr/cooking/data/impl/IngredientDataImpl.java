@@ -3,6 +3,8 @@
  */
 package fr.cooking.data.impl;
 
+import java.util.ArrayList;
+
 import fr.cooking.data.IIngredientData;
 import fr.cooking.data.dao.IngredientDao;
 
@@ -48,10 +50,28 @@ public class IngredientDataImpl implements IIngredientData {
 		id.insererIngredient(id);
 	}
 
-	public IIngredientData recupererIngredient() {
+	public ArrayList<IIngredientData> recupererIngredient() {
+		ArrayList<IIngredientData> lstIngredientData = new ArrayList<IIngredientData>();
+		ArrayList<IngredientDao> lstIngredientDao = new ArrayList<IngredientDao>();
+		
+		IngredientDao iDao = IngredientDao.getInstance();
+		lstIngredientDao = iDao.recupererIngredient();
+		
+		for (IngredientDao ingredientDao : lstIngredientDao) {
+			lstIngredientData.add((IIngredientData) ingredientDao);
+		}
+		//lstIngredientData = (ArrayList<IIngredientData>) (ArrayList<?>) lstIngredientDao;
+		
+		return lstIngredientData;
+	}
 
-		IngredientDao id = IngredientDao.getInstance();
-		return id.recupererIngredient();
+	/* (non-Javadoc)
+	 * @see fr.cooking.data.IIngredientData#supprimer(fr.cooking.data.IIngredientData)
+	 */
+	@Override
+	public void supprimer(IIngredientData ingredient) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

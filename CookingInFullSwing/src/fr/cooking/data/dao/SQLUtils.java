@@ -74,7 +74,7 @@ public class SQLUtils {
 
 		try {
 			stmt = connection.createStatement();
-			if (type.equals("INS")) {
+			if (type.equals("UPD")) {
 				stmt.executeUpdate(sql);
 				System.out.println("insertion ok!");
 			} else if (type.equals("SEL")) {

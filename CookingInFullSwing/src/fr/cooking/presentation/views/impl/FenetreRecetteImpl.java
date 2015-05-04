@@ -2,6 +2,7 @@ package fr.cooking.presentation.views.impl;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -11,11 +12,14 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import fr.cooking.metier.IIngredient;
 import fr.cooking.presentation.beans.IBean;
+import fr.cooking.presentation.beans.IngredientBean;
 import fr.cooking.presentation.beans.RecetteBean;
 import fr.cooking.presentation.controlers.ControleurCooking;
 import fr.cooking.presentation.views.IFenetre;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FenetreRecetteImpl extends JFrame implements IFenetre {
 
@@ -23,12 +27,12 @@ public class FenetreRecetteImpl extends JFrame implements IFenetre {
 	 * 
 	 */
 	ControleurCooking controler;
-	RecetteBean bean;
+	RecetteBean rBean;
+	IngredientBean iBean;
 
 	private static final long serialVersionUID = 1L;
 	private JTextField txtRecette;
 	private JTextField txtDescription;
-	//JComboBox<IIngredient> cblstIngredients;
 	JComboBox cblstIngredients;
 	private JTextField tquantite;
 	JFrame fenetreRecette;
@@ -38,9 +42,10 @@ public class FenetreRecetteImpl extends JFrame implements IFenetre {
 		initialize();
 	}
 
-	public FenetreRecetteImpl(IBean ib, ControleurCooking cc) {
+	public FenetreRecetteImpl(IBean rb, IBean ib, ControleurCooking cc) {
 		this.controler = cc;
-		this.bean = (RecetteBean) ib;
+		this.rBean = (RecetteBean) rb;
+		this.iBean = (IngredientBean) ib;
 		initialize();
 	}
 
@@ -91,14 +96,25 @@ public class FenetreRecetteImpl extends JFrame implements IFenetre {
 		lblListeDesIngrdients.setBounds(350, 44, 158, 14);
 		fenetreRecette.getContentPane().add(lblListeDesIngrdients);
 
-		//cblstIngredients = new JComboBox<IIngredient>();
-		cblstIngredients = new JComboBox();
+		ArrayList<String> ls = new ArrayList<String>();
+		ls.add("sel");
+		ls.add("poivre");
+		ls.add("moutarde");
+
+		cblstIngredients = new JComboBox(ls.toArray());
+		
+//		   ActionListener actionListener = new ActionListener() {public void actionPerformed(ActionEvent actionEvent) {
+//		        System.out.println("Selected: " + cblstIngredients.getSelectedItem());
+//		        //System.out.println(", Position: " + cblstIngredients.getSelectedIndex());
+//		      }
+//		    };
+//		    cblstIngredients.addActionListener(actionListener);
+
 		cblstIngredients.setBounds(80, 313, 166, 20);
 		fenetreRecette.getContentPane().add(cblstIngredients);
+		
 
-		cblstIngredients.addItem("Sel");
-		cblstIngredients.addItem("poivre");
-		cblstIngredients.addItem("etc");
+
 		JLabel lblIngredient = new JLabel("Ingredient :");
 		lblIngredient.setBounds(10, 316, 60, 14);
 		fenetreRecette.getContentPane().add(lblIngredient);
@@ -128,9 +144,13 @@ public class FenetreRecetteImpl extends JFrame implements IFenetre {
 		btnAjouterIngredient.setIcon(new ImageIcon(FenetreRecetteImpl.class
 				.getResource("/img/btn-add-ico.png")));
 		btnAjouterIngredient.addMouseListener(new MouseAdapter() {
+			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				controler.ajoutIngredientRecette(getFenetre());
+				String ingredient = (String) cblstIngredients.getSelectedItem();
+				System.out.println(ingredient);
+				iBean.setNomIngredient(ingredient);
+				controler.ajoutIngredientRecette(getFenetre(), iBean);
 			}
 		});
 
@@ -166,6 +186,9 @@ public class FenetreRecetteImpl extends JFrame implements IFenetre {
 		});
 	}
 
+	/**
+	 * Getters & Setters
+	 */
 	public JTextArea getLstIngredientRecette() {
 		return lstIngredientRecette;
 	}
@@ -173,16 +196,16 @@ public class FenetreRecetteImpl extends JFrame implements IFenetre {
 	public void setLstIngredientRecette(String nomIngredient) {
 		this.lstIngredientRecette.append(nomIngredient);
 	}
-	
+
 	public void lstIngredientRecetteClear() {
 		this.lstIngredientRecette.setText("");
 	}
 
-	public JComboBox<IIngredient> getCblstIngredients() {
+	public JComboBox getCblstIngredients() {
 		return cblstIngredients;
 	}
 
-	public void setCblstIngredients(JComboBox<IIngredient> cblstIngredients) {
+	public void setCblstIngredients(JComboBox cblstIngredients) {
 		this.cblstIngredients = cblstIngredients;
 	}
 
@@ -231,7 +254,7 @@ public class FenetreRecetteImpl extends JFrame implements IFenetre {
 	@Override
 	public void settIngredient(JTextField tIngredient) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

@@ -11,7 +11,6 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import fr.cooking.metier.IIngredient;
 import fr.cooking.presentation.controlers.ControleurCooking;
 import fr.cooking.presentation.views.IFenetre;
 
@@ -49,7 +48,7 @@ public class MainFenetreImpl extends JFrame implements IFenetre {
 		setTitle("Cooking In Full Swing");
 		mainfenetre.getContentPane().setLayout(null);
 		this.mainfenetre.setVisible(true);
-		
+
 		JLabel lblMenuPrincipal = new JLabel("Menu principal");
 		lblMenuPrincipal.setBounds(69, 36, 82, 14);
 		mainfenetre.getContentPane().add(lblMenuPrincipal);
@@ -97,19 +96,19 @@ public class MainFenetreImpl extends JFrame implements IFenetre {
 	@Override
 	public void setTextField(JTextField textField) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public JComboBox<IIngredient> getCblstIngredients() {
+	public JComboBox getCblstIngredients() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void setCblstIngredients(JComboBox<IIngredient> cblstIngredients) {
+	public void setCblstIngredients(JComboBox cblstIngredients) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -121,7 +120,7 @@ public class MainFenetreImpl extends JFrame implements IFenetre {
 	@Override
 	public void setTxtRecette(JTextField txtRecette) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -133,7 +132,7 @@ public class MainFenetreImpl extends JFrame implements IFenetre {
 	@Override
 	public void setTxtDescription(JTextField txtDescription) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -145,7 +144,7 @@ public class MainFenetreImpl extends JFrame implements IFenetre {
 	@Override
 	public void setTquantite(JTextField tquantite) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -157,7 +156,7 @@ public class MainFenetreImpl extends JFrame implements IFenetre {
 	@Override
 	public void settIngredient(JTextField tIngredient) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -169,12 +168,12 @@ public class MainFenetreImpl extends JFrame implements IFenetre {
 	@Override
 	public void setLstIngredientRecette(String nomIngredient) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void lstIngredientRecetteClear() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

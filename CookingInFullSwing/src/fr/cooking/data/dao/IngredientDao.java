@@ -5,8 +5,9 @@ package fr.cooking.data.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-import fr.cooking.data.IIngredientData;
+import fr.cooking.metier.IIngredient;
 
 /**
  * @author ajc
@@ -44,25 +45,38 @@ public class IngredientDao {
 				+ ingredient.getNomIngredient() + "')";
 		System.out.println(sql);
 
-		sqlu.executeSQL(sql, "INS");
+		sqlu.executeSQL(sql, "UPD");
 	}
 
-	public IIngredientData recupererIngredient() {
+	public ArrayList<IngredientDao> recupererIngredient() {
 
 		SQLUtils sqlu = SQLUtils.getInstance();
-
-		String sql = "SELECT * FROM Contact";
+		ArrayList<IngredientDao> lstIngredient = new ArrayList<IngredientDao>();
+		String sql = "SELECT nomIngredient FROM Ingredients";
 		rst = sqlu.executeSQL(sql, "SEL");
 
 		try {
 			while (rst.next()) {
-				//System.out.println(rst.getnomIngredient("nomIngredient"));
+				this.setNomIngredient("nomIngredient");
+				lstIngredient.add(this);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+		return lstIngredient;
 
 	}
+	
+
+	public void supprimerIngredient(IIngredient ingredient) {
+		// TODO Auto-generated method stub
+		SQLUtils sqlu = SQLUtils.getInstance();
+
+		String sql = "DELETE nomIngredient FROM ingredients WHERE nomIngredient ='" + ingredient.getNomIngredient() + "'";
+		System.out.println(sql);
+
+		sqlu.executeSQL(sql, "UPD");
+	}
+
 }
