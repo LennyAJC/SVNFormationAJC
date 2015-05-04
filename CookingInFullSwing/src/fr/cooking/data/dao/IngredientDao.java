@@ -26,7 +26,7 @@ public class IngredientDao {
 		}
 		return instance;
 	}
-	
+
 	/**
 	 * @return the nomIngredient
 	 */
@@ -44,6 +44,7 @@ public class IngredientDao {
 
 	/**
 	 * Methode permettant d'enregistrer un ingrédient.
+	 * 
 	 * @param ingredient
 	 */
 	public void insererIngredient(IngredientDao ingredient) {
@@ -59,6 +60,7 @@ public class IngredientDao {
 
 	/**
 	 * Methode de recupérer une liste d'ingrédient.
+	 * 
 	 * @return
 	 */
 	public ArrayList<IngredientDao> recupererIngredient() {
@@ -70,34 +72,35 @@ public class IngredientDao {
 
 		try {
 			while (rst.next()) {
-				setNomIngredient(rst.getString("nomIngredient"));
-				lstIngredient.add(this);
+				IngredientDao idao = new IngredientDao();
+				idao.setNomIngredient(rst.getString("nomIngredient"));
+				lstIngredient.add(idao);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			System.out.println("La requete est incorrecte" + sql);
-			   System.out.println("Exception SQL : ");
-			   while (e != null) {
-			      String message = e.getMessage();
-			      String sqlState = e.getSQLState();
-			      int errorCode = e.getErrorCode();
-			      System.out.println("Message = "+message);
-			      System.out.println("SQLState = "+sqlState);
-			      System.out.println("ErrorCode = "+errorCode);
-			      e.printStackTrace();
-			      e = e.getNextException();
-			   }
+			System.out.println("Exception SQL : ");
+			while (e != null) {
+				String message = e.getMessage();
+				String sqlState = e.getSQLState();
+				int errorCode = e.getErrorCode();
+				System.out.println("Message = " + message);
+				System.out.println("SQLState = " + sqlState);
+				System.out.println("ErrorCode = " + errorCode);
+				e.printStackTrace();
+				e = e.getNextException();
+			}
 		}
+
 		return lstIngredient;
 
 	}
 
 	/**
 	 * Methode permettant de supprimer un ingredient.
+	 * 
 	 * @param id
 	 */
 	public void supprimerIngredient(IngredientDao ingredient) {
-		// TODO Auto-generated method stub
 		SQLUtils sqlu = SQLUtils.getInstance();
 
 		String sql = "DELETE FROM ingredients WHERE nomIngredient ='"

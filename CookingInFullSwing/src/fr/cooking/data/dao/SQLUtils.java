@@ -18,7 +18,7 @@ public class SQLUtils {
 
 	Connection connection = null;
 	Statement stmt = null;
-	ResultSet rst = null;
+	ResultSet rst;
 	
 	static private SQLUtils instance = null;
 
@@ -80,7 +80,7 @@ public class SQLUtils {
 			} else if (type.equals("SEL")) {
 				rst = stmt.executeQuery(sql);
 			}
-			stmt.close();
+			//stmt.close();
 
 		} catch (SQLException e) {
 			System.out.println("La requete est incorrecte" + sql);
@@ -96,12 +96,12 @@ public class SQLUtils {
 			      e = e.getNextException();
 			   }
 		}
-		try {
-			connection.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Impossible de fermer la connection");
-		}
+//		try {
+//			connection.close();
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			System.out.println("Impossible de fermer la connection");
+//		}
 		return rst;
 	}
 }

@@ -18,6 +18,7 @@ public class RecetteDao {
 
 	String nomRecette;
 	String description;
+	ArrayList<IngredientDao> idao;
 
 	public RecetteDao() {
 
@@ -114,8 +115,8 @@ public class RecetteDao {
 
 		try {
 			while (rst.next()) {
-				this.setNomRecette("nomRecette");
-				this.setDescription("descrition");
+				this.setNomRecette(rst.getString("nomRecette"));
+				this.setDescription(rst.getString("descrition"));
 				lstIngredient.add(this);
 			}
 		} catch (SQLException e) {

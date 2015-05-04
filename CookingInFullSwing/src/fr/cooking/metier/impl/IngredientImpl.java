@@ -57,10 +57,10 @@ public class IngredientImpl implements IIngredient {
 		lstIngredientData = iData.recupererIngredient();
 
 		for (IIngredientData ingredientData : lstIngredientData) {
-			lstIngredient.add((IIngredient) ingredientData);
+			IIngredient ii = new IngredientImpl();
+			ii.setNomIngredient(ingredientData.getNomIngredient());
+			lstIngredient.add(ii);
 		}
-		// lstIngredientData = (ArrayList<IIngredientData>) (ArrayList<?>)
-		// lstIngredientDao;
 
 		return lstIngredient;
 	}
