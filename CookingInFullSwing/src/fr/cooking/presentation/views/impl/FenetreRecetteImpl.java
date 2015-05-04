@@ -100,16 +100,6 @@ public class FenetreRecetteImpl extends JFrame implements IFenetre {
 
 		cblstIngredients = new JComboBox(ls.toArray());
 
-		// ActionListener actionListener = new ActionListener() {public void
-		// actionPerformed(ActionEvent actionEvent) {
-		// System.out.println("Selected: " +
-		// cblstIngredients.getSelectedItem());
-		// //System.out.println(", Position: " +
-		// cblstIngredients.getSelectedIndex());
-		// }
-		// };
-		// cblstIngredients.addActionListener(actionListener);
-
 		cblstIngredients.setBounds(80, 313, 166, 20);
 		fenetreRecette.getContentPane().add(cblstIngredients);
 
@@ -179,6 +169,8 @@ public class FenetreRecetteImpl extends JFrame implements IFenetre {
 		btnCreerRecette.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				rBean.setNomRecette(txtRecette.getText());
+				rBean.setDescription(txtDescription.getText());
 				controler.gestionRecette();
 			}
 		});

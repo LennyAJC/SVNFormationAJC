@@ -3,6 +3,8 @@
  */
 package fr.cooking.metier.impl;
 
+import java.util.ArrayList;
+
 import fr.cooking.data.IRecetteData;
 import fr.cooking.data.RecetteDataFactory;
 import fr.cooking.metier.IRecette;
@@ -59,17 +61,36 @@ public class RecetteImpl implements IRecette {
 		this.nomRecette = nomRecette;
 	}
 
+	/**
+	 * Methode permettant d'enregistrer une recette.
+	 */
 	public void enregistrer(IRecette recette) {
 		RecetteDataFactory rdf = RecetteDataFactory.getFactory();
 		IRecetteData ird = rdf.getInstance();
 
 		ird.setNomRecette(recette.getNomRecette());
-		ird.setDescription(recette.getNomRecette());
+		ird.setDescription(recette.getDescription());
 		ird.enregistrer(ird);
 	}
 
-	public IRecetteData recupererIngredient() {
-		return null;
+	/**
+	 * Methode permettant de récupérer une liste de recette.
+	 */
+	public ArrayList<IRecette> recupererRecette() {
+		ArrayList<IRecette> lstRecette = new ArrayList<IRecette>();
+		ArrayList<IRecetteData> lstRecetteData = new ArrayList<IRecetteData>();
+
+		RecetteDataFactory rDataF = RecetteDataFactory.getFactory();
+		IRecetteData rData = rDataF.getInstance();
+		lstRecetteData = rData.recupererRecette();
+
+		for (IRecetteData recetteData : lstRecetteData) {
+			lstRecette.add((IRecette) recetteData);
+		}
+		// lstIngredientData = (ArrayList<IIngredientData>) (ArrayList<?>)
+		// lstIngredientDao;
+
+		return lstRecette;
 	}
 
 }

@@ -16,14 +16,6 @@ public class IngredientDao {
 	String nomIngredient;
 	ResultSet rst = null;
 
-	public String getNomIngredient() {
-		return nomIngredient;
-	}
-
-	public void setNomIngredient(String nomIngredient) {
-		this.nomIngredient = nomIngredient;
-	}
-
 	public IngredientDao() {
 
 	}
@@ -34,7 +26,26 @@ public class IngredientDao {
 		}
 		return instance;
 	}
+	
+	/**
+	 * @return the nomIngredient
+	 */
+	public String getNomIngredient() {
+		return nomIngredient;
+	}
 
+	/**
+	 * @param nomIngredient
+	 *            the nomIngredient to set
+	 */
+	public void setNomIngredient(String nomIngredient) {
+		this.nomIngredient = nomIngredient;
+	}
+
+	/**
+	 * Methode permettant d'enregistrer un ingrédient.
+	 * @param ingredient
+	 */
 	public void insererIngredient(IngredientDao ingredient) {
 
 		SQLUtils sqlu = SQLUtils.getInstance();
@@ -46,6 +57,10 @@ public class IngredientDao {
 		sqlu.executeSQL(sql, "UPD");
 	}
 
+	/**
+	 * Methode de recupérer une liste d'ingrédient.
+	 * @return
+	 */
 	public ArrayList<IngredientDao> recupererIngredient() {
 
 		SQLUtils sqlu = SQLUtils.getInstance();
@@ -66,12 +81,16 @@ public class IngredientDao {
 
 	}
 
-	public void supprimerIngredient(IngredientDao id) {
+	/**
+	 * Methode permettant de supprimer un ingredient.
+	 * @param id
+	 */
+	public void supprimerIngredient(IngredientDao ingredient) {
 		// TODO Auto-generated method stub
 		SQLUtils sqlu = SQLUtils.getInstance();
 
 		String sql = "DELETE FROM ingredients WHERE nomIngredient ='"
-				+ id.getNomIngredient() + "'";
+				+ ingredient.getNomIngredient() + "'";
 		System.out.println(sql);
 
 		sqlu.executeSQL(sql, "UPD");

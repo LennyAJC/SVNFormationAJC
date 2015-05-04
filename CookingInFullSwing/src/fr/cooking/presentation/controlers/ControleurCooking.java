@@ -24,6 +24,7 @@ public class ControleurCooking {
 
 	private static ControleurCooking instance = null;
 
+	
 	public static ControleurCooking getInstance() {
 		if (instance == null) {
 			instance = new ControleurCooking();
@@ -31,6 +32,10 @@ public class ControleurCooking {
 		return instance;
 	}
 
+	/**
+	 * Methode permettant de lancer une fenêtre
+	 * @param fenetre
+	 */
 	public void launch(String fenetre) {
 		System.out.println("Lancement :" + fenetre + "\n");
 		ffa = FenetreFactory.getFactory();
@@ -45,6 +50,7 @@ public class ControleurCooking {
 						lstIngredient = new ArrayList<String>();
 						window = ffa.getInstance(fenetre, rBean, iBean,
 								getInstance());
+						
 					} else if (fenetre.equals("FI")) {
 						rBean = RecetteBean.getInstance();
 						iBean = IngredientBean.getInstance();
@@ -97,6 +103,7 @@ public class ControleurCooking {
 		IRecette ir = rf.getInstance();
 
 		ir.setNomRecette(rBean.getNomRecette());
+		ir.setDescription(rBean.getDescription());
 
 		ir.enregistrer(ir);
 	}

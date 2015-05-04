@@ -17,9 +17,9 @@ import java.util.Scanner;
 public class SQLUtils {
 
 	Connection connection = null;
-
 	Statement stmt = null;
 	ResultSet rst = null;
+	
 	static private SQLUtils instance = null;
 
 	public Scanner sc = new Scanner(System.in);
@@ -63,7 +63,7 @@ public class SQLUtils {
 	}
 
 	/**
-	 * 
+	 * Methode permettant d'exécuter une requête.
 	 * @param sql
 	 * @param type
 	 * @return
@@ -83,7 +83,6 @@ public class SQLUtils {
 			stmt.close();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			System.out.println("La requete est incorrecte" + sql);
 			   System.out.println("Exception SQL : ");
 			   while (e != null) {

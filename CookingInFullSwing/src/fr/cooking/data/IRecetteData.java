@@ -3,6 +3,7 @@
  */
 package fr.cooking.data;
 
+import java.util.ArrayList;
 
 /**
  * @author ajc
@@ -32,8 +33,17 @@ public interface IRecetteData {
 	 */
 	public void setNomRecette(String nomRecette);
 
+	/**
+	 * Methode permettant d'enregistrer une recette (nom + description
+	 * uniquement)
+	 */
 	public void enregistrer(IRecetteData recette);
 
-	public IRecetteData recupererIngredient();
+	/**
+	 * Methode permettant de récupérer la liste des recettes.
+	 * 
+	 * @return
+	 */
+	public ArrayList<IRecetteData> recupererRecette();
 
 }

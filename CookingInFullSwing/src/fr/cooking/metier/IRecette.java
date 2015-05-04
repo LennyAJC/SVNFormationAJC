@@ -3,7 +3,7 @@
  */
 package fr.cooking.metier;
 
-import fr.cooking.data.IRecetteData;
+import java.util.ArrayList;
 
 /**
  * @author ajc
@@ -18,6 +18,11 @@ public interface IRecette {
 	public void setDescription(String description);
 
 	/**
+	 * @return the description
+	 */
+	public String getDescription();
+
+	/**
 	 * @return the NomRecette
 	 */
 	public String getNomRecette();
@@ -30,12 +35,12 @@ public interface IRecette {
 
 	/**
 	 * @param Recette
-	 *            enregistrer une recette
+	 *            Methode permettant d'enregistrer une recette.
 	 */
 	public void enregistrer(IRecette recette);
 
 	/**
-	 * Recuperer une recette
+	 * Methode permettant de récupérer une liste de recette.
 	 */
-	public IRecetteData recupererIngredient();
+	public ArrayList<IRecette> recupererRecette();
 }

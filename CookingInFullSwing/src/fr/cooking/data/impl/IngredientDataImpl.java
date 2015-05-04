@@ -53,27 +53,30 @@ public class IngredientDataImpl implements IIngredientData {
 	public ArrayList<IIngredientData> recupererIngredient() {
 		ArrayList<IIngredientData> lstIngredientData = new ArrayList<IIngredientData>();
 		ArrayList<IngredientDao> lstIngredientDao = new ArrayList<IngredientDao>();
-		
+
 		IngredientDao iDao = IngredientDao.getInstance();
 		lstIngredientDao = iDao.recupererIngredient();
-		
+
 		for (IngredientDao ingredientDao : lstIngredientDao) {
 			lstIngredientData.add((IIngredientData) ingredientDao);
 		}
-		//lstIngredientData = (ArrayList<IIngredientData>) (ArrayList<?>) lstIngredientDao;
-		
+
 		return lstIngredientData;
 	}
 
-	/* (non-Javadoc)
-	 * @see fr.cooking.data.IIngredientData#supprimer(fr.cooking.data.IIngredientData)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * fr.cooking.data.IIngredientData#supprimer(fr.cooking.data.IIngredientData
+	 * )
 	 */
 	@Override
 	public void supprimer(IIngredientData ingredient) {
 		IngredientDao id = IngredientDao.getInstance();
 		id.setNomIngredient(this.getNomIngredient());
 		id.supprimerIngredient(id);
-		
+
 	}
 
 }
