@@ -25,6 +25,7 @@ public class Utils {
 		afficher(str);
 		int lu;
 		lu = sc.nextInt();
+		 sc.nextLine();
 		return lu;
 	}
 
@@ -35,7 +36,7 @@ public class Utils {
 	public String lireString(String str) {
 		afficher(str);
 		String lu;
-		lu = sc.next();
+		lu = sc.nextLine();
 		return lu;
 	}
 

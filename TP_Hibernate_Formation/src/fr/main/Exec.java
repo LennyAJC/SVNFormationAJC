@@ -40,13 +40,13 @@ public class Exec {
 				u.afficher("Ajouter une nouvelle formation");
 				creerFormation();
 			} else if (reponse == 2) {
-				u.afficher("Saisissez le numéro de la formation que vous voulez supprimer");
-				supprimerFormation(null);
+				u.afficher("Supprimer une formation");
+				supprimerFormation();
 			} else if (reponse == 3) {
-				u.afficher("Saisissez le numéro de la formation que vous voulez modifier");
-				creerFormation();
+				u.afficher("Modifier une formation");
+				ajouterStagiaire();
 			} else if (reponse == 4) {
-				u.afficher("Saisissez le numéro de la formation à laquelle vous souhaitez ajouter des stagiaires");
+				u.afficher("Ajouter des stagiaires");
 				creerFormation();
 			} else if (reponse == 5) {
 				u.afficher("\n Liste des formations");
@@ -82,10 +82,6 @@ public class Exec {
 		Date dateFormation = u.lireDate("Date de la formation : ");
 		int nbStagiaireMax = u.lireInt("Nombre de stagiaire maximum : ");
 		formation = new Formation(nomFormation, dateFormation, nbStagiaireMax);
-		// formation = new Formation("Formation JAVA HIBERNATE", new
-		// SimpleDateFormat(
-		// "dd/MM/yy").parse("05/05/2015"), 0);
-
 		em.persist(formation);
 
 		transaction.commit();
@@ -131,9 +127,14 @@ public class Exec {
 		EntityManager em = getEntityManager();
 
 		EntityTransaction transaction = em.getTransaction();
-		transaction.begin();
 
-		formation.setNbStagiaire(formation.getNbStagiaire() + 3);
+		int idFormation = u.lireInt("Numéro de formation :");
+		int nbStagiaire = u.lireInt("Nombre de stagiaire à ajouter :");
+		transaction.begin();
+		formation = (Formation) em.createQuery(
+				"select f from Formation f WHERE f.idFormation='" + idFormation
+						+ "'").getSingleResult();
+		formation.setNbStagiaire(formation.getNbStagiaire() + nbStagiaire);
 
 		transaction.commit();
 
@@ -145,13 +146,19 @@ public class Exec {
 	 * 
 	 * @param formation
 	 */
-	public static void supprimerFormation(Formation formation) {
+	public static void supprimerFormation() {
 
 		EntityManager em = getEntityManager();
 
 		EntityTransaction transaction = em.getTransaction();
 		transaction.begin();
 
+		int idFormation = u
+				.lireInt("Indiquer le numéro de formation que vous souhaitez supprimer :");
+
+		formation = (Formation) em.createQuery(
+				"select f from Formation f WHERE f.idFormation='" + idFormation
+						+ "'").getSingleResult();
 		em.remove(formation);
 
 		transaction.commit();
