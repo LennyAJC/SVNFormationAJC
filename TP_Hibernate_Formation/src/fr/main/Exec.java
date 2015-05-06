@@ -10,6 +10,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import fr.entity.Formation;
+import fr.utils.HUtils;
 import fr.utils.Utils;
 
 public class Exec {
@@ -17,9 +18,10 @@ public class Exec {
 	private static EntityManagerFactory emf = Persistence
 			.createEntityManagerFactory("jpa");
 	private static EntityManager em = null;
-	private static EntityTransaction transaction;
+	static EntityTransaction transaction;
 	private static Formation formation;
 	static Utils u = Utils.getInstance();
+	static HUtils hu = HUtils.getInstance();
 
 	public static void main(String[] args) throws Exception {
 		int reponse;
@@ -47,7 +49,7 @@ public class Exec {
 				ajouterStagiaire();
 			} else if (reponse == 4) {
 				u.afficher("Ajouter des stagiaires");
-				creerFormation();
+				ajouterStagiaire();
 			} else if (reponse == 5) {
 				u.afficher("\n Liste des formations");
 				afficherFormation();
@@ -57,7 +59,7 @@ public class Exec {
 			menu();
 			reponse = u.lireInt("Quel est votre choix ?");
 		}
-
+		u.afficher(" Au revoir !");
 	}
 
 	private static void menu() {
@@ -74,31 +76,23 @@ public class Exec {
 
 	private static void creerFormation() throws ParseException {
 
-		em = getEntityManager();
-		transaction = em.getTransaction();
-
-		transaction.begin();
 		String nomFormation = u.lireString("Nom de la formation :");
 		Date dateFormation = u.lireDate("Date de la formation : ");
 		int nbStagiaireMax = u.lireInt("Nombre de stagiaire maximum : ");
 		formation = new Formation(nomFormation, dateFormation, nbStagiaireMax);
-		em.persist(formation);
 
-		transaction.commit();
+		hu.execute(formation, 0, "PER");
+
+		// em = getEntityManager();
+		// transaction = em.getTransaction();
+		//
+		// transaction.begin();
+		//
+		// em.persist(formation);
+		//
+		// transaction.commit();
 
 	}
-
-	// private static void findlast() {
-	//
-	// EntityManager em = getEntityManager();
-	// transaction = em.getTransaction();
-	//
-	// transaction.begin();
-	// f4 = em.find(Formation.class, 34);
-	// transaction.commit();
-	// dump();
-	//
-	// }
 
 	/**
 	 * Methode permettant de renvoyer la liste des formations
@@ -124,21 +118,12 @@ public class Exec {
 	 */
 	public static void ajouterStagiaire() {
 
-		EntityManager em = getEntityManager();
-
-		EntityTransaction transaction = em.getTransaction();
 
 		int idFormation = u.lireInt("Numéro de formation :");
 		int nbStagiaire = u.lireInt("Nombre de stagiaire à ajouter :");
-		transaction.begin();
-		formation = (Formation) em.createQuery(
-				"select f from Formation f WHERE f.idFormation='" + idFormation
-						+ "'").getSingleResult();
+		formation = hu.execute(formation, idFormation, "SEL");
+		
 		formation.setNbStagiaire(formation.getNbStagiaire() + nbStagiaire);
-
-		transaction.commit();
-
-		afficherFormation();
 	}
 
 	/**
@@ -162,8 +147,6 @@ public class Exec {
 		em.remove(formation);
 
 		transaction.commit();
-
-		afficherFormation();
 	}
 
 	/**
