@@ -29,13 +29,13 @@ public class Categories {
 
 	@OneToMany(mappedBy = "categories", fetch = FetchType.LAZY)
 	private Set<Produits> produits = new HashSet<Produits>();
-	
-	public Categories(){
-		
+
+	public Categories() {
+
 	}
-	
-	public Categories(int idCategorie){
-		this.idCategorie=idCategorie;
+
+	public Categories(int idCategorie) {
+		this.idCategorie = idCategorie;
 	}
 
 	public int getIdCategorie() {
@@ -69,14 +69,10 @@ public class Categories {
 	public void setProduits(Set<Produits> produits) {
 		this.produits = produits;
 	}
-    public String toString() { 
-        return String.format("Categorie[%d,%d,%s]", idCategorie, Version, nomCategorie); 
-    } 
-    
-    public void addProduit(Produits produit) { 
-        // Le produit est ajouté dans la collection des produits de la catégorie 
-    	produits.add(produit); 
-        // Le produit change de catégorie 
-    	produit.setCategories(this); 
-    } 
+
+	public String toString() {
+		return String.format("Categorie[%d,%d,%s]", idCategorie, Version,
+				nomCategorie);
+	}
+
 }
